@@ -2,28 +2,28 @@ import ScrollReveal from '../ScrollReveal'
 
 const events = [
   {
-    year: '2024',
-    title: 'Started Web Development',
+    year: '2022 – 2023',
+    title: 'Foundations in Programming',
     description:
-      'Began learning modern web development with HTML, CSS, and JavaScript. Built foundational skills in frontend technologies and version control with Git.',
+      'Started learning C programming at CTU Naga, building core logic and problem-solving skills. Later transitioned to Java, studying Data Structures and Algorithms under Mr. Anqui to strengthen algorithmic thinking.',
   },
   {
-    year: '2025',
-    title: 'Built Clinic Management System',
+    year: '2023 – 2024',
+    title: 'Web Development & OOP Fundamentals',
     description:
-      'Developed a full-stack medical clinic management platform using React, Express, and Supabase as a capstone project. Integrated role-based access and disease forecasting.',
+      'Explored web development with HTML, CSS, and JavaScript. Learned PHP and MySQL for database-driven applications, while studying Object-Oriented Programming with C# covering encapsulation, inheritance, and polymorphism.',
   },
   {
-    year: '2025',
-    title: 'Started Mobile Development',
+    year: '2024 – 2025',
+    title: 'Modern Web Technologies & Cloud Tools',
     description:
-      'Expanded into mobile development with React Native. Built a Pomodoro productivity app with Supabase authentication and Google login.',
+      'Transitioned into component-based frontend development with React. Adopted Firebase and later Supabase for authentication and cloud databases, expanding into full-stack workflows and real-time application systems.',
   },
   {
-    year: '2026',
-    title: 'Built Workspace Productivity Platform',
+    year: '2025 – 2026',
+    title: 'Full-Stack Development & Deployment',
     description:
-      'Developed a comprehensive productivity system with task management, analytics, and team collaboration features using modern web technologies.',
+      'Developed and deployed full-stack applications using React, Node.js, Express.js, and Supabase. Built cross-platform mobile apps with React Native. Gained real-world internship experience with deployment tools like Render, NGINX, AWS, and NSSM.',
   },
 ]
 
