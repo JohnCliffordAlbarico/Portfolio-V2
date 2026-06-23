@@ -17,8 +17,8 @@ export default function Hero() {
             John Clifford M. Albarico
           </h1>
           <p className="max-w-lg text-lg text-muted">
-            Passionate about building modern web applications using React,
-            Next.js, Node.js, and Supabase. Currently focused on developing
+            Passionate about building modern web applications using Reactjs,
+            React Native, Node.js, and Supabase. Currently focused on developing
             scalable, efficient, and user-centered systems while continuously
             improving my skills in full-stack development.
           </p>
