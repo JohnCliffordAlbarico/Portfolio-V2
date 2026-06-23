@@ -5,7 +5,7 @@ import profileImage from '../../assets/profile.jpg'
 export default function Hero() {
   return (
     <section
-      id="hero"
+      id="profile"
       className="flex min-h-[calc(100vh-4rem)] items-center px-6"
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1fr_auto]">

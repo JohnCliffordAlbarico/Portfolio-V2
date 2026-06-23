@@ -13,28 +13,34 @@ export default function Footer() {
 
         <div className="flex items-center gap-4">
           <a
-            href="#"
+            href="mailto:cliffordalbarico20@gmail.com"
             className="text-muted transition-colors hover:text-primary"
             aria-label="Email"
           >
             <Mail size={18} />
           </a>
           <a
-            href="#"
+            href="https://github.com/JohnCliffordAlbarico"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted transition-colors hover:text-primary"
             aria-label="GitHub"
           >
             <FaGithub size={18} />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/clifford-albarico-1b3604369"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted transition-colors hover:text-primary"
             aria-label="LinkedIn"
           >
             <FaLinkedin size={18} />
           </a>
           <a
-            href="#"
+            href="https://www.facebook.com/albarico.clifford"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted transition-colors hover:text-primary"
             aria-label="Facebook"
           >

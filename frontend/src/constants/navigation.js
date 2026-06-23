@@ -1,5 +1,5 @@
 export const HOME_SECTIONS = [
-  { id: 'hero', label: 'Hero' },
+  { id: 'profile', label: 'Profile' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Technical Skills' },
   { id: 'projects', label: 'Projects' },

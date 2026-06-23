@@ -8,7 +8,7 @@ export default function MainLayout() {
   const isHome = location.pathname === '/'
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="dot-pattern flex min-h-screen flex-col bg-background">
       <Navbar />
 
       <main className="flex-1 pt-16">

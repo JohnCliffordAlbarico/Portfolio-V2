@@ -19,4 +19,9 @@ body {
   font-family: var(--font-sans);
 }
 
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(220, 38, 38, 0.2) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
 
