@@ -1,25 +1,28 @@
 import { Link } from 'react-router-dom'
-import { FolderKanban, Stethoscope, LayoutDashboard, Timer } from 'lucide-react'
+import { Stethoscope, LayoutDashboard, Clock } from 'lucide-react'
 import ScrollReveal from '../ScrollReveal'
 
 const projects = [
   {
     icon: Stethoscope,
-    title: 'Medical Clinic Management System',
+    title: 'Bacaltos Clinic',
     description:
       'A full-stack clinic management platform with role-based access, patient records, appointment scheduling, and disease forecasting features built with React, Express, and Supabase.',
+    url: 'https://bacaltosclinic.onrender.com/',
   },
   {
     icon: LayoutDashboard,
-    title: 'Workspace Productivity System',
+    title: 'Yuuko Workspace',
     description:
-      'A productivity platform featuring task management, analytics dashboard, and collaborative tools designed to streamline team workflows and track project progress.',
+      'A personal workspace built during OJT weekends for task tracking with duration and analytics to review what I accomplished over time.',
+    url: 'https://yuuko-workspace.onrender.com/',
   },
   {
-    icon: Timer,
-    title: 'Pomodoro App',
+    icon: Clock,
+    title: 'More Projects',
     description:
-      'A React Native mobile application with Supabase authentication, Google login integration, and customizable focus session tracking for productivity management.',
+      'Additional projects and experiments are on the way. Check the full list for updates.',
+    url: null,
   },
 ]
 
@@ -35,17 +38,36 @@ export default function FeaturedProjects() {
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map(({ icon: Icon, title, description }, i) => (
+          {projects.map(({ icon: Icon, title, description, url }, i) => (
             <ScrollReveal key={title} delay={i * 120} distance={40}>
-              <div className="flex flex-col rounded-xl border border-white/5 bg-background p-6 transition-colors hover:border-primary/20">
-                <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-surface">
-                  <Icon size={22} className="text-primary" />
+              {url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col rounded-xl border border-white/5 bg-background p-6 transition-colors hover:border-primary/20"
+                >
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-surface">
+                    <Icon size={22} className="text-primary" />
+                  </div>
+                  <h3 className="font-medium leading-snug">{title}</h3>
+                  <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">
+                    {description}
+                  </p>
+                  <span className="mt-4 text-xs text-primary">Live Demo &rarr;</span>
+                </a>
+              ) : (
+                <div className="flex flex-col rounded-xl border border-dashed border-white/10 bg-background p-6">
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-surface">
+                    <Icon size={22} className="text-muted/40" />
+                  </div>
+                  <h3 className="font-medium leading-snug text-muted">{title}</h3>
+                  <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">
+                    {description}
+                  </p>
+                  <span className="mt-4 text-xs text-muted/60">Coming Soon</span>
                 </div>
-                <h3 className="font-medium leading-snug">{title}</h3>
-                <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">
-                  {description}
-                </p>
-              </div>
+              )}
             </ScrollReveal>
           ))}
         </div>
