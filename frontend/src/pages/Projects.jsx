@@ -1,4 +1,4 @@
-import { Timer, Wrench, ExternalLink } from 'lucide-react'
+import { Wrench, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import bacaltosImg from '../assets/bacaltosproject.jpg'
 import workspaceImg from '../assets/yuukoworkspace.jpg'
@@ -9,7 +9,7 @@ const projects = [
     title: 'Bacaltos Clinic',
     description:
       'A full-stack clinic management platform with role-based access, patient records, appointment scheduling, and disease forecasting features.',
-    tech: ['React', 'Express', 'Supabase'],
+    tech: ['React', 'Express', 'Supabase', 'Render', 'Cloudflare'],
     url: 'https://bacaltosclinic.onrender.com/',
     status: 'live',
   },
@@ -18,18 +18,9 @@ const projects = [
     title: 'Yuuko Workspace',
     description:
       'A personal workspace for task tracking with duration and analytics to review productivity over time.',
-    tech: ['React', 'Supabase'],
+    tech: ['React', 'Express', 'Supabase', 'Render', 'Cloudflare'],
     url: 'https://yuuko-workspace.onrender.com/',
     status: 'live',
-  },
-  {
-    icon: Timer,
-    title: 'Pomodoro App',
-    description:
-      'A React Native mobile application with Supabase authentication, Google login integration, and customizable focus session tracking.',
-    tech: ['React Native', 'Supabase'],
-    url: null,
-    status: 'coming-soon',
   },
   {
     icon: Wrench,
