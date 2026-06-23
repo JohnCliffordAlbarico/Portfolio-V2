@@ -33,7 +33,7 @@ export default function About() {
           A dedicated software developer with academic excellence and practical experience in full-stack development, ready to contribute to innovative technology solutions.
         </p>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map(({ icon: Icon, title, description }, i) => (
             <ScrollReveal key={title} delay={i * 150} distance={44}>
               <article className="rounded-xl border border-white/5 bg-background p-6 transition-colors hover:border-primary/20">

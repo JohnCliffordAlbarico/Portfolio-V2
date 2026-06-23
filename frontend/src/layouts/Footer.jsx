@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="border-t border-white/5 bg-surface">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
         <p className="text-sm text-muted">
-          &copy; {year} John Clifford M. Albarico 2026. All rights reserved.
+          &copy; {year} John Clifford M. Albarico. All rights reserved.
         </p>
 
         <div className="flex items-center gap-4">

@@ -34,7 +34,7 @@ export default function FeaturedProjects() {
           Selected work. Full list available on the projects page.
         </p>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map(({ icon: Icon, title, description }, i) => (
             <ScrollReveal key={title} delay={i * 120} distance={40}>
               <div className="flex flex-col rounded-xl border border-white/5 bg-background p-6 transition-colors hover:border-primary/20">
