@@ -1,8 +1,11 @@
 export const HOME_SECTIONS = [
   { id: 'hero', label: 'Hero' },
   { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Technical Skills' },
   { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills' },
+  { id: 'timeline', label: 'Timeline' },
+  { id: 'education', label: 'Education' },
+  { id: 'awards', label: 'Awards' },
   { id: 'contact', label: 'Contact' },
 ]
 

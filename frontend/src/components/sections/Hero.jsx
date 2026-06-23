@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, User } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import profileImage from '../../assets/profile.jpg'
 
 export default function Hero() {
   return (
@@ -37,8 +38,12 @@ export default function Hero() {
         </div>
 
         <div className="flex justify-center lg:justify-end">
-          <div className="flex size-48 items-center justify-center rounded-2xl border border-white/10 bg-surface sm:size-56">
-            <User size={80} className="text-muted/40" strokeWidth={1} />
+          <div className="size-48 overflow-hidden rounded-2xl border border-white/10 bg-surface sm:size-56">
+            <img
+              src={profileImage}
+              alt="John Clifford M. Albarico"
+              className="size-full object-cover object-center"
+            />
           </div>
         </div>
       </div>

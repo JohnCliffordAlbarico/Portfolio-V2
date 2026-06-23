@@ -1,31 +1,69 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 export function useActiveSection(sectionIds) {
   const [activeId, setActiveId] = useState(sectionIds[0] ?? '')
 
-  useEffect(() => {
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
+  const findActive = useCallback(() => {
+    const scrollY = window.scrollY
+    const viewportHeight = window.innerHeight
 
-    if (elements.length === 0) return
+    // At the very top — always first section
+    if (scrollY < 80) {
+      setActiveId(sectionIds[0] ?? '')
+      return
+    }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+    // Find which section is most visible in the center of the viewport
+    const centerY = scrollY + viewportHeight * 0.5
 
-        if (visible[0]?.target.id) {
-          setActiveId(visible[0].target.id)
+    let bestMatch = sectionIds[0]
+    let smallestDistance = Infinity
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id)
+      if (!el) continue
+      
+      const rect = el.getBoundingClientRect()
+      const sectionTop = scrollY + rect.top
+      const sectionBottom = sectionTop + rect.height
+      const sectionCenter = sectionTop + rect.height / 2
+
+      // If the section is visible in viewport
+      if (sectionBottom > scrollY && sectionTop < scrollY + viewportHeight) {
+        const distanceFromCenter = Math.abs(sectionCenter - centerY)
+        if (distanceFromCenter < smallestDistance) {
+          smallestDistance = distanceFromCenter
+          bestMatch = id
         }
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
-    )
+      }
+    }
 
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    setActiveId(bestMatch)
   }, [sectionIds])
+
+  useEffect(() => {
+    findActive()
+    
+    // Use requestAnimationFrame to avoid triggering during smooth scroll animations
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          findActive()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', findActive, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', findActive)
+    }
+  }, [findActive])
 
   return activeId
 }

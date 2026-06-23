@@ -10,7 +10,7 @@ const links = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="px-6 py-24">
+    <section id="contact" className="min-h-[80vh] flex items-center px-6 py-24">
       <div className="mx-auto max-w-6xl text-center">
         <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
           Contact

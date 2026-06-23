@@ -6,7 +6,11 @@ import { NAV_LINKS } from '../constants/navigation'
 export default function Navbar() {
   const location = useLocation()
   const [open, setOpen] = useState(false)
-  const isHome = location.pathname === '/'
+
+  const isNavActive = (href) => {
+    if (href === '/') return location.pathname === '/'
+    return location.pathname.startsWith(href)
+  }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
@@ -20,7 +24,7 @@ export default function Navbar() {
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(({ label, href }) => {
-            const active = location.pathname === href
+            const active = isNavActive(href)
             return (
               <li key={href}>
                 <Link
@@ -51,24 +55,25 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-white/5 bg-surface px-6 py-4 md:hidden">
           <ul className="flex flex-col gap-4">
-            {NAV_LINKS.map(({ label, href }) => (
-              <li key={href}>
-                <Link
-                  to={href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm text-muted hover:text-foreground"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map(({ label, href }) => {
+              const active = isNavActive(href)
+              return (
+                <li key={href}>
+                  <Link
+                    to={href}
+                    onClick={() => setOpen(false)}
+                    className={`text-sm transition-colors ${
+                      active
+                        ? 'text-primary'
+                        : 'text-muted hover:text-foreground'
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
-        </div>
-      )}
-
-      {isHome && (
-        <div className="sr-only" aria-hidden="true">
-          Section navigation available on the right
         </div>
       )}
     </header>
