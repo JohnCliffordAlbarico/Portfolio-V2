@@ -11,14 +11,16 @@ export default function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1fr_auto]">
         <div className="space-y-6">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
-            Full Stack Developer
+            Aspiring Full Stack Developer
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             John Clifford M. Albarico
           </h1>
           <p className="max-w-lg text-lg text-muted">
-            Building modern web and mobile applications using React, React
-            Native, Express, and Supabase.
+            Passionate about building modern web applications using React,
+            Next.js, Node.js, and Supabase. Currently focused on developing
+            scalable, efficient, and user-centered systems while continuously
+            improving my skills in full-stack development.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
