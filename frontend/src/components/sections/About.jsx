@@ -4,21 +4,24 @@ import ScrollReveal from '../ScrollReveal'
 const highlights = [
   {
     icon: Code,
-    title: 'Full-Stack Development Experience',
+    title: 'Full-Stack Development',
     description:
-      'Bachelor of Science in Information Technology graduate with hands-on experience in full-stack web development, specializing in building responsive and functional web applications using React.js, Node.js, and Express.js.',
+      'BS IT graduate with hands-on experience building responsive web apps using React, Node.js, Express, and Supabase.',
+    accent: 'border-t-primary',
   },
   {
     icon: Briefcase,
-    title: 'Professional & Academic Projects',
+    title: 'Real-World Experience',
     description:
-      'Practical experience from internship at Open Space Technology, developing inventory and admin management systems with document generation features. Completed capstone project focused on clinic management with disease forecasting, combining system development with data-driven features to support healthcare operations.',
+      'Internship at Open Space Technology building inventory and admin systems. Capstone project on clinic management with disease forecasting.',
+    accent: 'border-t-accent',
   },
   {
     icon: Target,
-    title: 'Passion for Development',
+    title: 'Growth-Oriented',
     description:
-      'Passionate about building efficient, user-focused systems and continuously improving technical skills through real-world projects and problem-solving. Currently seeking opportunities to further grow as a software developer and contribute to impactful development teams.',
+      'Constantly improving through real-world projects and problem-solving. Seeking opportunities to contribute to impactful dev teams.',
+    accent: 'border-t-primary',
   },
 ]
 
@@ -34,9 +37,9 @@ export default function About() {
         </p>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {highlights.map(({ icon: Icon, title, description }, i) => (
+          {highlights.map(({ icon: Icon, title, description, accent }, i) => (
             <ScrollReveal key={title} delay={i * 150} distance={44}>
-              <article className="rounded-xl border border-white/5 bg-background p-6 transition-colors hover:border-primary/20">
+              <article className={`rounded-xl border border-white/5 border-t-2 ${accent} bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.2)]`}>
                 <div className="space-y-4">
                   <div className="flex size-12 items-center justify-center rounded-lg bg-surface">
                     <Icon size={20} className="text-primary" />

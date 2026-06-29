@@ -15,33 +15,41 @@ export default function Home() {
         <Hero />
       </ScrollReveal>
 
-      <ScrollReveal distance={56}>
-        <About />
-      </ScrollReveal>
+      <div className="section-divider">
+        <ScrollReveal distance={56}>
+          <About />
+        </ScrollReveal>
+      </div>
 
       <ScrollReveal distance={56}>
         <Skills />
       </ScrollReveal>
 
-      <ScrollReveal distance={56}>
-        <FeaturedProjects />
-      </ScrollReveal>
+      <div className="section-divider">
+        <ScrollReveal distance={56}>
+          <FeaturedProjects />
+        </ScrollReveal>
+      </div>
 
       <ScrollReveal distance={56}>
         <Timeline />
       </ScrollReveal>
 
-      <ScrollReveal distance={56}>
-        <Education />
-      </ScrollReveal>
+      <div className="section-divider">
+        <ScrollReveal distance={56}>
+          <Education />
+        </ScrollReveal>
+      </div>
 
       <ScrollReveal distance={56}>
         <Awards />
       </ScrollReveal>
 
-      <ScrollReveal distance={56}>
-        <ContactSection />
-      </ScrollReveal>
+      <div className="section-divider">
+        <ScrollReveal distance={56}>
+          <ContactSection />
+        </ScrollReveal>
+      </div>
     </>
   )
 }
