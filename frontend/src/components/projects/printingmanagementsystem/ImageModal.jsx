@@ -26,48 +26,48 @@ export default function ImageModal({ images, currentIndex, onClose, onNavigate }
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 top-16 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 z-10 rounded-full bg-surface/80 p-2 text-muted transition-colors hover:text-foreground"
+        className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground sm:right-6"
         aria-label="Close"
       >
         <X size={20} />
       </button>
 
       <div
-        className="relative mx-4 flex max-h-[90vh] max-w-5xl flex-col items-center"
+        className="relative mx-4 flex max-w-4xl flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative flex items-center justify-center">
+        <div className="flex items-center justify-center gap-2">
           {hasPrev && (
             <button
               type="button"
               onClick={() => onNavigate(currentIndex - 1)}
-              className="absolute -left-12 z-10 rounded-full bg-surface/80 p-2 text-muted transition-colors hover:text-foreground lg:-left-14"
+              className="z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground"
               aria-label="Previous image"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={20} />
             </button>
           )}
 
           <img
             src={image.src}
             alt={image.title}
-            className="max-h-[70vh] rounded-lg object-contain"
+            className="max-h-[60vh] rounded-lg object-contain"
           />
 
           {hasNext && (
             <button
               type="button"
               onClick={() => onNavigate(currentIndex + 1)}
-              className="absolute -right-12 z-10 rounded-full bg-surface/80 p-2 text-muted transition-colors hover:text-foreground lg:-right-14"
+              className="z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground"
               aria-label="Next image"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={20} />
             </button>
           )}
         </div>

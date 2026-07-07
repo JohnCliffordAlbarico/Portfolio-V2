@@ -27,16 +27,13 @@ export default function Hero() {
 
         <div className="space-y-6 text-center md:text-left">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
-            Aspiring Full Stack Developer
+            Software Developer
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             John Clifford M. Albarico
           </h1>
           <p className="mx-auto max-w-lg text-lg text-muted md:mx-0">
-            Passionate about building modern web applications using Reactjs,
-            React Native, Node.js, and Supabase. Currently focused on developing
-            scalable, efficient, and user-centered systems while continuously
-            improving my skills in full-stack development.
+            A software developer passionate about building modern web, mobile, and desktop applications. Focused on creating scalable, efficient, and user-centered systems while continuously improving my development skills.
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 md:justify-start">

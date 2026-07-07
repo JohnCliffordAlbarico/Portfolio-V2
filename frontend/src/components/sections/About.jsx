@@ -33,7 +33,7 @@ export default function About() {
           About Me
         </h2>
         <p className="mb-12 max-w-2xl text-muted leading-relaxed">
-          A dedicated software developer with academic excellence and practical experience in full-stack development, ready to contribute to innovative technology solutions.
+          A software developer passionate about building modern web, mobile, and desktop applications. Focused on creating scalable, efficient, and user-centered systems while continuously improving my development skills.
         </p>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
