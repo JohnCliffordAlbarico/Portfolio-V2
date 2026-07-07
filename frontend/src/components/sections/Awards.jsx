@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Award, GraduationCap } from 'lucide-react'
 import awardImage from '../../assets/award.jpg'
 import diplomaImage from '../../assets/diploma.jpg'
 import ScrollReveal from '../ScrollReveal'
+import ImageModal from '../projects/printingmanagementsystem/ImageModal'
 
 const items = [
   {
@@ -16,13 +18,21 @@ const items = [
     icon: GraduationCap,
     title: 'Bachelor of Science in Information Technology — Cum Laude',
     description:
-      'Graduated with Cum Laude honors from the BS IT program for School Year 2025–2026, reflecting consistent academic excellence and a strong foundation in software development.',
+      'Graduated with Cum Laude honors from the BSIT program for School Year 2025–2026, reflecting consistent academic excellence and a strong foundation in software development.',
   },
 ]
 
 export default function Awards() {
+  const [modalIndex, setModalIndex] = useState(null)
+
+  const modalImages = items.map((item) => ({
+    src: item.image,
+    title: item.title,
+    description: item.description,
+  }))
+
   return (
-    <section id="awards" className="bg-surface min-h-[80vh] flex items-center px-6 py-24">
+    <section id="awards" className="min-h-[80vh] flex items-center px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
           Awards & Certifications
@@ -36,13 +46,17 @@ export default function Awards() {
           {items.map(({ image, icon: Icon, title, description }, i) => (
             <ScrollReveal key={title} delay={i * 150} distance={44}>
               <article className="flex gap-4 overflow-hidden rounded-xl border border-white/5 bg-background transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.15)]">
-                <div className="size-28 shrink-0 overflow-hidden bg-surface sm:size-32">
+                <button
+                  type="button"
+                  onClick={() => setModalIndex(i)}
+                  className="size-28 shrink-0 overflow-hidden bg-surface sm:size-32"
+                >
                   <img
                     src={image}
                     alt={title}
-                    className="size-full object-cover object-center"
+                    className="size-full object-cover object-center transition-transform duration-300 hover:scale-105"
                   />
-                </div>
+                </button>
                 <div className="flex flex-col justify-center space-y-2 py-4 pr-4">
                   <div className="flex items-center gap-2">
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-surface">
@@ -57,6 +71,15 @@ export default function Awards() {
           ))}
         </div>
       </div>
+
+      {modalIndex !== null && (
+        <ImageModal
+          images={modalImages}
+          currentIndex={modalIndex}
+          onClose={() => setModalIndex(null)}
+          onNavigate={setModalIndex}
+        />
+      )}
     </section>
   )
 }

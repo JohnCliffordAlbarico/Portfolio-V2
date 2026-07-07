@@ -1,8 +1,7 @@
-import { Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 
-const links = [
-  { icon: Mail, label: 'Email', href: 'mailto:cliffordalbarico20@gmail.com' },
+const socials = [
   { icon: FaGithub, label: 'GitHub', href: 'https://github.com/JohnCliffordAlbarico' },
   { icon: FaLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/clifford-albarico-1b3604369' },
   { icon: FaFacebook, label: 'Facebook', href: 'https://www.facebook.com/albarico.clifford' },
@@ -17,8 +16,8 @@ export default function ContactSection() {
         </h2>
         <p className="mb-10 text-muted">Let&apos;s build something together.</p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6">
-          {links.map(({ icon: Icon, label, href }) => (
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {socials.map(({ icon: Icon, label, href }) => (
             <a
               key={label}
               href={href}
@@ -30,6 +29,12 @@ export default function ContactSection() {
               {label}
             </a>
           ))}
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-accent"
+          >
+            Contact Me
+          </Link>
         </div>
       </div>
     </section>

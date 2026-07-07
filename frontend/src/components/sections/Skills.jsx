@@ -13,6 +13,8 @@ import {
   SiFastapi,
   SiFirebase,
   SiSupabase,
+  SiSqlite,
+  SiElectron,
   SiGit,
   SiGithub,
   SiRender,
@@ -37,6 +39,7 @@ const groups = [
       { name: 'React.js', icon: SiReact, level: 4 },
       { name: 'React Native', icon: SiReact, level: 3 },
       { name: 'Next.js', icon: SiNextdotjs, level: 3 },
+      { name: 'ElectronJS', icon: SiElectron, level: 3 },
     ]
   },
   { 
@@ -52,6 +55,7 @@ const groups = [
     items: [
       { name: 'Firebase', icon: SiFirebase, level: 3 },
       { name: 'Supabase', icon: SiSupabase, level: 4 },
+      { name: 'SQLite', icon: SiSqlite, level: 4.5 },
     ]
   },
   { 
@@ -68,21 +72,29 @@ const groups = [
 function ProficiencyBar({ level }) {
   return (
     <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((i) => (
-        <div
-          key={i}
-          className={`h-1.5 w-5 rounded-full transition-colors ${
-            i <= level ? 'bg-primary' : 'bg-white/10'
-          }`}
-        />
-      ))}
+      {[1, 2, 3, 4, 5].map((i) => {
+        const filled = i <= Math.floor(level)
+        const half = !filled && i === Math.ceil(level) && level % 1 !== 0
+        return (
+          <div
+            key={i}
+            className="h-1.5 w-5 rounded-full bg-white/10"
+          >
+            {(filled || half) && (
+              <div
+                className={`h-full rounded-full bg-primary ${half ? 'w-[50%]' : 'w-full'}`}
+              />
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }
 
 export default function Skills() {
   return (
-    <section id="skills" className="bg-surface min-h-[80vh] flex items-center px-6 py-24">
+    <section id="skills" className="min-h-[80vh] flex items-center px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-10 text-2xl font-semibold tracking-tight sm:text-3xl">
           Technical Skills
