@@ -12,7 +12,7 @@ const categories = [
     title: 'Client Projects',
     icon: Briefcase,
     description: 'Work built for clients and businesses.',
-    custom: true,
+    projects: [],
   },
   {
     title: 'Personal Projects',
@@ -138,10 +138,15 @@ export default function Projects() {
                       <ProjectCard {...project} />
                     </ScrollReveal>
                   ))}
-                  {title === 'Personal Projects' && (
-                    <ScrollReveal distance={36}>
-                      <PrintingManagementSystem />
-                    </ScrollReveal>
+                  {title === 'Client Projects' && (
+                    <>
+                      <ScrollReveal distance={36}>
+                        <BacaltosHealthcareSystem />
+                      </ScrollReveal>
+                      <ScrollReveal distance={36}>
+                        <PrintingManagementSystem />
+                      </ScrollReveal>
+                    </>
                   )}
                 </div>
               )}
