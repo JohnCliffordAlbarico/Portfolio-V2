@@ -17,6 +17,7 @@ const categories = [
   {
     title: 'Personal Projects',
     icon: User,
+    custom: true,
     projects: [
       {
         image: workspaceImg,
@@ -127,9 +128,23 @@ export default function Projects() {
                 <EmptyCard message={emptyMessage} />
               ) : custom ? (
                 <div className="grid gap-6 sm:grid-cols-2">
-                  <ScrollReveal distance={36}>
-                    <BacaltosHealthcareSystem />
-                  </ScrollReveal>
+                  {title === 'Client Projects' && (
+                    <ScrollReveal distance={36}>
+                      <BacaltosHealthcareSystem />
+                    </ScrollReveal>
+                  )}
+                  {title === 'Personal Projects' && (
+                    <>
+                      {projects?.map((project) => (
+                        <ScrollReveal key={project.title} distance={36}>
+                          <ProjectCard {...project} />
+                        </ScrollReveal>
+                      ))}
+                      <ScrollReveal distance={36}>
+                        <PrintingManagementSystem />
+                      </ScrollReveal>
+                    </>
+                  )}
                 </div>
               ) : (
                 <div className="grid gap-6 sm:grid-cols-2">
@@ -138,11 +153,6 @@ export default function Projects() {
                       <ProjectCard {...project} />
                     </ScrollReveal>
                   ))}
-                  {title === 'Personal Projects' && (
-                    <ScrollReveal distance={36}>
-                      <PrintingManagementSystem />
-                    </ScrollReveal>
-                  )}
                 </div>
               )}
             </section>
