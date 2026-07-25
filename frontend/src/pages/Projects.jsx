@@ -12,7 +12,7 @@ const categories = [
     title: 'Client Projects',
     icon: Briefcase,
     description: 'Work built for clients and businesses.',
-    projects: [],
+    custom: true,
   },
   {
     title: 'Personal Projects',
@@ -126,7 +126,7 @@ export default function Projects() {
               {empty ? (
                 <EmptyCard message={emptyMessage} />
               ) : custom ? (
-                <div className="flex justify-center">
+                <div className="grid gap-6 sm:grid-cols-2">
                   <ScrollReveal distance={36}>
                     <BacaltosHealthcareSystem />
                   </ScrollReveal>
@@ -138,15 +138,10 @@ export default function Projects() {
                       <ProjectCard {...project} />
                     </ScrollReveal>
                   ))}
-                  {title === 'Client Projects' && (
-                    <>
-                      <ScrollReveal distance={36}>
-                        <BacaltosHealthcareSystem />
-                      </ScrollReveal>
-                      <ScrollReveal distance={36}>
-                        <PrintingManagementSystem />
-                      </ScrollReveal>
-                    </>
+                  {title === 'Personal Projects' && (
+                    <ScrollReveal distance={36}>
+                      <PrintingManagementSystem />
+                    </ScrollReveal>
                   )}
                 </div>
               )}
