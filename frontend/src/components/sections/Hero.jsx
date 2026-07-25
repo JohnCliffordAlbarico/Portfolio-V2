@@ -1,6 +1,25 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Download, FolderOpen, Mail, Award } from 'lucide-react'
 import profileImage from '../../assets/profile.jpg'
+import useTypewriter from '../../hooks/useTypewriter'
+
+const skills = [
+  'React',
+  'React Native',
+  'Electron js',
+  'Node.js',
+  'Express.js',
+  'JavaScript',
+  'TypeScript',
+  'HTML5',
+  'CSS3',
+  'Tailwind CSS',
+  'SQLite',
+  'Supabase',
+  'Cloudflare R2',
+  'REST APIs',
+  'Git & GitHub',
+];
 
 const stats = [
   { icon: FolderOpen, label: 'Projects', value: '4+' },
@@ -9,6 +28,13 @@ const stats = [
 ]
 
 export default function Hero() {
+  const { text } = useTypewriter({
+    words: skills,
+    typingSpeed: 80,
+    deletingSpeed: 50,
+    pauseDuration: 2000,
+  })
+
   return (
     <section
       id="profile"
@@ -32,6 +58,13 @@ export default function Hero() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             John Clifford M. Albarico
           </h1>
+          <p className="mx-auto max-w-lg text-lg text-muted md:mx-0">
+            Building modern apps with{' '}
+            <span className="font-semibold text-primary">
+              {text}
+              <span className="animate-blink text-primary">|</span>
+            </span>
+          </p>
           <p className="mx-auto max-w-lg text-lg text-muted md:mx-0">
             A software developer passionate about building modern web, mobile, and desktop applications. Focused on creating scalable, efficient, and user-centered systems while continuously improving my development skills.
           </p>
@@ -58,7 +91,7 @@ export default function Hero() {
           <div className="flex flex-wrap justify-center gap-4 md:justify-start">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent animate-glow-pulse"
             >
               View Projects
               <ArrowRight size={16} />

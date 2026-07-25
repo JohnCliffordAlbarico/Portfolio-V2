@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 
 export default function ImageModal({ images, currentIndex, onClose, onNavigate }) {
@@ -24,47 +25,49 @@ export default function ImageModal({ images, currentIndex, onClose, onNavigate }
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < images.length - 1
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 top-16 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] grid place-items-center bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground sm:right-6"
+        className="absolute right-3 top-3 z-20 flex size-9 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5 sm:size-10"
         aria-label="Close"
       >
         <X size={20} />
       </button>
 
       <div
-        className="relative mx-4 flex max-w-4xl flex-col items-center"
+        className="flex w-full max-w-5xl flex-col items-center px-4 sm:px-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex w-full items-center gap-2 sm:gap-4">
           {hasPrev && (
             <button
               type="button"
               onClick={() => onNavigate(currentIndex - 1)}
-              className="z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground"
+              className="z-10 flex size-9 shrink-0 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80 sm:size-10"
               aria-label="Previous image"
             >
               <ChevronLeft size={20} />
             </button>
           )}
 
-          <img
-            src={image.src}
-            alt={image.title}
-            className="max-h-[60vh] rounded-lg object-contain"
-          />
+          <div className="flex min-h-0 flex-1 items-center justify-center">
+            <img
+              src={image.src}
+              alt={image.title}
+              className="max-h-[80vh] w-full rounded-lg object-contain"
+            />
+          </div>
 
           {hasNext && (
             <button
               type="button"
               onClick={() => onNavigate(currentIndex + 1)}
-              className="z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-muted transition-colors hover:text-foreground"
+              className="z-10 flex size-9 shrink-0 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80 sm:size-10"
               aria-label="Next image"
             >
               <ChevronRight size={20} />
@@ -72,10 +75,10 @@ export default function ImageModal({ images, currentIndex, onClose, onNavigate }
           )}
         </div>
 
-        <div className="mt-4 w-full text-center">
-          <h3 className="text-lg font-medium text-foreground">{image.title}</h3>
-          <p className="mt-1 text-sm text-muted">{image.description}</p>
-          <p className="mt-2 text-xs text-muted/60">
+        <div className="mt-4 text-center">
+          <h3 className="text-base font-medium text-white sm:text-lg">{image.title}</h3>
+          <p className="mt-1 text-xs text-white/60 sm:text-sm">{image.description}</p>
+          <p className="mt-1.5 text-xs text-white/40">
             {currentIndex + 1} / {images.length}
           </p>
         </div>
@@ -87,13 +90,14 @@ export default function ImageModal({ images, currentIndex, onClose, onNavigate }
               type="button"
               onClick={() => onNavigate(i)}
               className={`size-2 rounded-full transition-colors ${
-                i === currentIndex ? 'bg-primary' : 'bg-muted/30 hover:bg-muted/50'
+                i === currentIndex ? 'bg-primary' : 'bg-white/30 hover:bg-white/50'
               }`}
               aria-label={`Go to image ${i + 1}`}
             />
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

@@ -6,7 +6,7 @@ const highlights = [
     icon: Code,
     title: 'Full-Stack Development',
     description:
-      'BS IT graduate with hands-on experience building responsive web apps using React, Node.js, Express, and Supabase.',
+      'BSIT graduate with hands-on experience building responsive web apps using React, Node.js, Express, and Supabase.',
     accent: 'border-t-primary',
   },
   {
