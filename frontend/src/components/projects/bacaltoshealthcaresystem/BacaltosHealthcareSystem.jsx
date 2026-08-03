@@ -22,12 +22,6 @@ const images = [
       'Main dashboard with patient stats, prescriptions, medical records, inventory, and quick actions for daily clinic operations.',
   },
   {
-    src: '/bacaltosproject/consoleui.png',
-    title: 'Desktop Controller',
-    description:
-      'Electron-based system tray application for managing backend services. Displays real-time server and database status with auto-launch settings.',
-  },
-  {
     src: '/bacaltosproject/Cloudsync.png',
     title: 'Cloud Sync',
     description:
@@ -85,6 +79,36 @@ export default function BacaltosHealthcareSystem() {
               Cloud sync with Turso for offsite backup
             </li>
           </ul>
+
+          <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-3">
+            <div className="flex items-center gap-2 text-xs font-medium text-green-400">
+              <span className="size-1.5 shrink-0 rounded-full bg-green-400" />
+              Deployed
+            </div>
+            <p className="mt-2 text-xs text-muted leading-relaxed">
+              Built for Bacaltos Medical Clinic to streamline patient records, prescriptions,
+              inventory, and cloud backups across branches.
+            </p>
+            <div className="mt-2 space-y-1 text-xs text-muted">
+              <p>
+                Client Email:{' '}
+                <a href="mailto:bacaltosjean@gmail.com" className="text-primary hover:underline">
+                  bacaltosjean@gmail.com
+                </a>
+              </p>
+              <p>
+                Facebook:{' '}
+                <a
+                  href="https://www.facebook.com/bacaltosmc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Bacaltos Medical Clinic
+                </a>
+              </p>
+            </div>
+          </div>
 
           <div className="mt-3 flex flex-wrap gap-1.5">
             {['React', 'Express', 'Electron', 'SQLite', 'Turso', 'Cloudflare R2'].map((t) => (
