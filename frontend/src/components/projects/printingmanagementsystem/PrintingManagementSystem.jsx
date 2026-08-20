@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ExternalLink, Maximize2 } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
-import ImageModal from './ImageModal'
+import ImageModal from '../../DevModal'
 
 const images = [
   {
@@ -9,18 +9,24 @@ const images = [
     title: 'Desktop Controller',
     description:
       'Electron-based system tray application for managing backend services. Displays real-time status of the server and database, with auto-launch settings and live console output.',
+    tags: ['Electron', 'System Tray'],
+    status: 'shipped',
   },
   {
     src: '/printingmanagementpic/2.png',
     title: 'System Status Monitor',
     description:
       'System health dashboard showing backend server and database connectivity. Provides quick access to open the React dashboard, with options to stop, hide, or quit the application.',
+    tags: ['Electron', 'Status Dashboard'],
+    status: 'shipped',
   },
   {
     src: '/printingmanagementpic/3.png',
     title: 'Web Dashboard',
     description:
       'Admin dashboard with sidebar navigation for managing transactions, customers, payments, users, and audit logs. Features summary cards, revenue analytics, and recent activity overview.',
+    tags: ['React', 'Express'],
+    status: 'shipped',
   },
 ]
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Maximize2 } from 'lucide-react'
-import ImageModal from '../printingmanagementsystem/ImageModal'
+import ImageModal from '../../DevModal'
 
 const images = [
   {
@@ -8,24 +8,32 @@ const images = [
     title: 'Desktop Controller',
     description:
       'Electron-based system tray application for managing backend services. Displays real-time server and database status with auto-launch settings.',
+    tags: ['Electron', 'System Tray'],
+    status: 'desktop-app · offline',
   },
   {
     src: '/bacaltosproject/login_page.png',
     title: 'Login Page',
     description:
       'Clean login interface for clinic staff with username and password authentication.',
+    tags: ['React', 'Auth'],
+    status: 'desktop-app · offline',
   },
   {
     src: '/bacaltosproject/MAIN UI.png',
     title: 'Dashboard',
     description:
       'Main dashboard with patient stats, prescriptions, medical records, inventory, and quick actions for daily clinic operations.',
+    tags: ['React', 'Dashboard'],
+    status: 'desktop-app · offline',
   },
   {
     src: '/bacaltosproject/Cloudsync.png',
     title: 'Cloud Sync',
     description:
       'Turso Cloud integration for offsite database backup with manual sync, auto-sync, and full sync history logging.',
+    tags: ['Turso', 'Cloudflare R2'],
+    status: 'desktop-app · offline',
   },
 ]
 
@@ -81,13 +89,14 @@ export default function BacaltosHealthcareSystem() {
           </ul>
 
           <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-3">
-            <div className="flex items-center gap-2 text-xs font-medium text-green-400">
-              <span className="size-1.5 shrink-0 rounded-full bg-green-400" />
-              Deployed
+            <div className="flex items-center gap-2 text-xs font-medium text-amber-400">
+              <span className="size-1.5 shrink-0 rounded-full bg-amber-400" />
+              Desktop App
             </div>
             <p className="mt-2 text-xs text-muted leading-relaxed">
-              Built for Bacaltos Medical Clinic to streamline patient records, prescriptions,
-              inventory, and cloud backups across branches.
+              Runs locally via Electron; no public URL — the live deployment belongs to the
+              capstone project. Built for Bacaltos Medical Clinic to streamline patient records,
+              prescriptions, inventory, and cloud backups across branches.
             </p>
             <div className="mt-2 space-y-1 text-xs text-muted">
               <p>

@@ -13,13 +13,20 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md">
+      <div className="dot-pattern pointer-events-none absolute inset-0 opacity-[0.15]" aria-hidden="true" />
+      <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           to="/"
-          className="truncate text-lg font-semibold tracking-tight text-foreground transition-colors hover:text-primary"
+          className="flex items-center gap-1 font-mono text-sm font-bold tracking-tight transition-opacity hover:opacity-80"
+          aria-label="JCADev home"
         >
-          John Clifford M. Albarico
+          <span className="text-muted">~/</span>
+          <span className="text-foreground">JCADev</span>
+          <span
+            aria-hidden="true"
+            className="ml-0.5 inline-block h-[1.1em] w-[0.55em] animate-blink bg-primary"
+          />
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -76,6 +83,7 @@ export default function Navbar() {
           </ul>
         </div>
       )}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
     </header>
   )
 }

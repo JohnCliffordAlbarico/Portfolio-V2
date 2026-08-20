@@ -9,20 +9,16 @@ export default function ScrollReveal({
   duration = 700,
 }) {
   const ref = useRef(null)
-  const [visible, setVisible] = useState(false)
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches
+  const [visible, setVisible] = useState(reducedMotion || false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
-
-    if (reducedMotion) {
-      setVisible(true)
-      return
-    }
+    if (reducedMotion) return
 
     if (immediate) {
       const timer = setTimeout(() => setVisible(true), 80)
@@ -41,7 +37,7 @@ export default function ScrollReveal({
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [immediate])
+  }, [immediate, reducedMotion])
 
   return (
     <div

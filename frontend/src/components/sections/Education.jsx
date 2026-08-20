@@ -1,5 +1,6 @@
 import { GraduationCap, School, MapPin } from 'lucide-react'
 import ScrollReveal from '../ScrollReveal'
+import SectionHeading from '../SectionHeading'
 
 const education = [
   {
@@ -7,6 +8,7 @@ const education = [
     title: 'Bachelor of Science in Information Technology — Cum Laude',
     school: 'Cebu Technological University - Naga Extension Campus',
     location: 'City of Naga, Cebu, Philippines',
+    path: 'CTU-Naga/bsit/cum-laude',
     year: '2022 – 2026',
     description:
       'Comprehensive foundation in software development, system design, and technology management with consistent academic excellence throughout the program.',
@@ -16,6 +18,7 @@ const education = [
     title: 'Senior High School (STEM Track)',
     school: 'Don Andres Soriano National High School',
     location: 'DAS Lutopan, Toledo City, Cebu, Philippines',
+    path: 'DAS-NHS/stem',
     year: '2020 – 2022',
     description:
       'Strong foundation in mathematics, science, and analytical thinking essential for technology careers.',
@@ -34,13 +37,17 @@ export default function Education() {
         </p>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {education.map(({ icon: Icon, title, school, location, year, description }, i) => (
+          {education.map(({ icon: Icon, title, school, location, path, year, description }, i) => (
             <ScrollReveal key={title} delay={i * 150} distance={44}>
               <article className="flex gap-4 rounded-xl border border-white/5 bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.15)]">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-surface">
                   <Icon size={22} className="text-primary" />
                 </div>
                 <div className="space-y-2">
+                  <p className="font-mono text-xs text-muted">
+                    <span className="text-primary">~/</span>
+                    {path}
+                  </p>
                   <h3 className="font-medium leading-snug">{title}</h3>
                   <p className="text-sm font-medium text-foreground">{school}</p>
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
@@ -48,7 +55,9 @@ export default function Education() {
                       <MapPin size={12} />
                       {location}
                     </span>
-                    <span className="rounded-md bg-white/5 px-2 py-0.5">{year}</span>
+                    <span className="rounded-md border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-primary">
+                      {year}
+                    </span>
                   </div>
                   <p className="text-sm text-muted leading-relaxed">{description}</p>
                 </div>

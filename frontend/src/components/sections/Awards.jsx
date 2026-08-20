@@ -3,12 +3,15 @@ import { Award, GraduationCap } from 'lucide-react'
 import awardImage from '../../assets/award.jpg'
 import diplomaImage from '../../assets/diploma.jpg'
 import ScrollReveal from '../ScrollReveal'
-import ImageModal from '../projects/printingmanagementsystem/ImageModal'
+import SectionHeading from '../SectionHeading'
+import ImageModal from '../DevModal'
 
 const items = [
   {
     image: awardImage,
     icon: Award,
+    badge: 'codathon-champion',
+    meta: 'technoweek/2025 · solo',
     title: 'Codathon Champion — Technolympics 2025',
     description:
       'Named champion of the Codathon at Technolympics 2025, a flagship event of TechnoWeek at CTU Naga Extension Campus. Competed individually against fellow students, testing problem-solving, logic, and coding proficiency under pressure.',
@@ -16,6 +19,8 @@ const items = [
   {
     image: diplomaImage,
     icon: GraduationCap,
+    badge: 'bsit-cum-laude',
+    meta: 'ctunaga/2022-2026',
     title: 'Bachelor of Science in Information Technology — Cum Laude',
     description:
       'Graduated with Cum Laude honors from the BSIT program for School Year 2025–2026, reflecting consistent academic excellence and a strong foundation in software development.',
@@ -29,21 +34,21 @@ export default function Awards() {
     src: item.image,
     title: item.title,
     description: item.description,
+    tags: item.badge.split('-'),
+    status: 'earned',
   }))
 
   return (
     <section id="awards" className="min-h-[80vh] flex items-center px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-          Awards & Certifications
-        </h2>
-        <p className="mb-12 max-w-2xl text-muted leading-relaxed">
-          Highlights from academic honors and competitive achievements — recognition
-          earned through consistent effort and strong performance.
-        </p>
+        <SectionHeading
+          eyebrow="achievements"
+          title="Awards & Certifications"
+          description="Highlights from academic honors and competitive achievements — recognition earned through consistent effort and strong performance."
+        />
 
         <div className="grid gap-8 md:grid-cols-2">
-          {items.map(({ image, icon: Icon, title, description }, i) => (
+          {items.map(({ image, icon: Icon, badge, meta, title, description }, i) => (
             <ScrollReveal key={title} delay={i * 150} distance={44}>
               <article className="flex gap-4 overflow-hidden rounded-xl border border-white/5 bg-background transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.15)]">
                 <button
@@ -58,12 +63,18 @@ export default function Awards() {
                   />
                 </button>
                 <div className="flex flex-col justify-center space-y-2 py-4 pr-4">
+                  <p className="font-mono text-xs text-primary">
+                    <span className="text-muted">badge:</span> {badge}
+                  </p>
                   <div className="flex items-center gap-2">
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-surface">
                       <Icon size={14} className="text-primary" />
                     </div>
                     <h3 className="text-sm font-medium leading-snug">{title}</h3>
                   </div>
+                  <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
+                    <span className="text-muted/50">achv:</span> {meta}
+                  </p>
                   <p className="text-xs text-muted leading-relaxed">{description}</p>
                 </div>
               </article>

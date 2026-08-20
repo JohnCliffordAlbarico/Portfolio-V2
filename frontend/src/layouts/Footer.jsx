@@ -5,10 +5,13 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-white/5 bg-surface">
+    <footer className="relative bg-surface">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
-        <p className="text-sm text-muted">
-          &copy; {year} John Clifford M. Albarico. All rights reserved.
+        <p className="font-mono text-sm text-muted">
+          <span className="text-foreground">~/JCADev</span>
+          <span className="mx-2 text-primary">&middot;</span>
+          &copy; {year} John Clifford M. Albarico
         </p>
 
         <div className="flex items-center gap-4">

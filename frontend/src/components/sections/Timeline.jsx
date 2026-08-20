@@ -1,5 +1,6 @@
 import { Code, Globe, Layers, Rocket } from 'lucide-react'
 import ScrollReveal from '../ScrollReveal'
+import SectionHeading from '../SectionHeading'
 
 const events = [
   {
@@ -7,6 +8,8 @@ const events = [
     title: 'Foundations in Programming',
     description:
       'Started learning C programming at CTU Naga, building core logic and problem-solving skills. Later transitioned to Java, studying Data Structures and Algorithms under Mr. Anqui to strengthen algorithmic thinking.',
+    commit: 'init: foundations',
+    branch: 'C',
     icon: Code,
     tags: ['C', 'Java', 'DSA'],
   },
@@ -15,6 +18,8 @@ const events = [
     title: 'Web Development & OOP Fundamentals',
     description:
       'Explored web development with HTML, CSS, and JavaScript. Learned PHP and MySQL for database-driven applications, while studying Object-Oriented Programming with C# covering encapsulation, inheritance, and polymorphism.',
+    commit: 'feat: web basics',
+    branch: 'web',
     icon: Globe,
     tags: ['HTML/CSS', 'JavaScript', 'PHP', 'C#'],
   },
@@ -23,6 +28,8 @@ const events = [
     title: 'Modern Web Technologies & Cloud Tools',
     description:
       'Transitioned into component-based frontend development with React. Adopted Firebase and later Supabase for authentication and cloud databases, expanding into full-stack workflows and real-time application systems.',
+    commit: 'feat: modern stack',
+    branch: 'react',
     icon: Layers,
     tags: ['React', 'Firebase', 'Supabase'],
   },
@@ -31,6 +38,8 @@ const events = [
     title: 'Full-Stack Development & Deployment',
     description:
       'Developed and deployed full-stack applications using React, Node.js, Express.js, and Supabase. Built cross-platform mobile apps with React Native. Gained real-world internship experience with deployment tools like Render, NGINX, AWS, and NSSM.',
+    commit: 'release: v1.0.0',
+    branch: 'main',
     icon: Rocket,
     tags: ['Node.js', 'Express', 'React Native', 'Render'],
   },
@@ -40,22 +49,27 @@ export default function Timeline() {
   return (
     <section id="timeline" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-          Technical Timeline
-        </h2>
-        <p className="mb-12 max-w-2xl text-muted leading-relaxed">
-          A look back at the key milestones in my development journey.
+        <SectionHeading
+          eyebrow="git log"
+          title="Technical Timeline"
+          description="A look back at the key milestones in my development journey — commit by commit."
+        />
+
+        <p className="mb-10 font-mono text-sm text-muted">
+          <span className="text-primary">$</span> git log --oneline --decorate
         </p>
 
         <div className="relative space-y-10 pl-10 before:absolute before:bottom-0 before:left-[11px] before:top-0 before:w-0.5 before:bg-gradient-to-b before:from-primary before:via-primary/50 before:to-transparent">
-          {events.map(({ year, title, description, icon: Icon, tags }, i) => (
+          {events.map(({ year, title, description, commit, branch, icon: Icon, tags }, i) => (
             <ScrollReveal key={i} delay={i * 100} distance={36}>
               <div className="relative">
                 <span className="absolute -left-10 top-1.5 flex size-[23px] items-center justify-center rounded-full border-2 border-primary bg-background">
                   <Icon size={11} className="text-primary" />
                 </span>
-                <span className="mb-1 block text-xs font-medium uppercase tracking-wider text-primary">
-                  {year}
+                <span className="mb-1 block font-mono text-xs text-muted">
+                  commit <span className="text-foreground">{commit}</span>
+                  <span className="mx-2 text-muted/40">·</span>
+                  <span className="text-primary">{year}</span>
                 </span>
                 <h3 className="mb-1 font-medium">{title}</h3>
                 <p className="max-w-lg text-sm text-muted leading-relaxed">
@@ -63,10 +77,13 @@ export default function Timeline() {
                 </p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {tags.map((tag) => (
-                    <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-muted">
+                    <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 font-mono text-xs text-muted">
                       {tag}
                     </span>
                   ))}
+                  <span className="rounded-md bg-primary/10 px-2 py-0.5 font-mono text-xs text-primary">
+                    branch: {branch}
+                  </span>
                 </div>
               </div>
             </ScrollReveal>

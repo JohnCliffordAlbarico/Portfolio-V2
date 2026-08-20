@@ -26,7 +26,7 @@ const categories = [
           'A personal workspace for task tracking with duration and analytics to review productivity over time.',
         tags: ['React', 'Node.js', 'Supabase'],
         url: 'https://yuuko-workspace.onrender.com/',
-        github: 'https://github.com/yourusername/yuuko-workspace',
+        github: 'https://github.com/JohnCliffordAlbarico/Workspace',
       },
     ],
   },
@@ -41,7 +41,6 @@ const categories = [
           'A full-stack clinic management platform with role-based access, patient records, appointment scheduling, and disease forecasting features.',
         tags: ['React', 'Express', 'Supabase', 'Node.js'],
         url: 'https://bacaltosclinic.onrender.com/',
-        github: 'https://github.com/yourusername/bacaltos-clinic',
       },
     ],
   },
@@ -50,14 +49,33 @@ const categories = [
 function ProjectCard({ image, title, description, tags, url, github }) {
   return (
     <div className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_0_24px_-4px_rgba(220,38,38,0.25)]">
-      <a href={url} target="_blank" rel="noopener noreferrer" className="relative aspect-video overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent" />
-      </a>
+      <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-3.5 py-2.5">
+        <span className="size-2.5 rounded-full bg-primary/80" />
+        <span className="size-2.5 rounded-full bg-primary/40" />
+        <span className="size-2.5 rounded-full bg-primary/20" />
+        <span className="ml-3 truncate font-mono text-xs text-muted">
+          {url ? url.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'desktop-app · offline'}
+        </span>
+      </div>
+      {url ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" className="relative aspect-video overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent" />
+        </a>
+      ) : (
+        <div className="relative aspect-video overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent" />
+        </div>
+      )}
       <div className="flex flex-col p-5">
         <h3 className="font-medium leading-snug">{title}</h3>
         <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">
@@ -71,22 +89,26 @@ function ProjectCard({ image, title, description, tags, url, github }) {
           ))}
         </div>
         <div className="mt-4 flex items-center gap-3">
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-accent"
-          >
-            Live Demo <ExternalLink size={12} />
-          </a>
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-foreground"
-          >
-            Source <SiGithub size={12} />
-          </a>
+          {url && (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-primary transition-colors hover:text-accent"
+            >
+              Live Demo <ExternalLink size={12} />
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-foreground"
+            >
+              Source <SiGithub size={12} />
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -106,6 +128,9 @@ export default function Projects() {
   return (
     <div className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
+        <p className="mb-2 font-mono text-sm text-primary">
+          <span className="text-muted">//</span> repositories
+        </p>
         <h1 className="mb-4 text-3xl font-bold tracking-tight">Projects</h1>
         <p className="mb-12 max-w-2xl text-muted">
           A collection of my work organized by type.

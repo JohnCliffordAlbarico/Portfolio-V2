@@ -42,8 +42,8 @@ export function useActiveSection(sectionIds) {
   }, [sectionIds])
 
   useEffect(() => {
-    findActive()
-    
+    const raf = requestAnimationFrame(findActive)
+
     // Use requestAnimationFrame to avoid triggering during smooth scroll animations
     let ticking = false
     const handleScroll = () => {
@@ -60,6 +60,7 @@ export function useActiveSection(sectionIds) {
     window.addEventListener('resize', findActive, { passive: true })
     
     return () => {
+      cancelAnimationFrame(raf)
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', findActive)
     }

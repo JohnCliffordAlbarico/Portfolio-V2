@@ -14,39 +14,46 @@ export default function SectionNav() {
       aria-label="Section navigation"
       className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
     >
-      <ul className="flex flex-col items-end gap-4">
-        {HOME_SECTIONS.map(({ id, label }) => {
-          const active = activeId === id
-          return (
-            <li key={id}>
-              <button
-                type="button"
-                onClick={() => scrollTo(id)}
-                className="group flex items-center gap-3"
-                aria-label={`Go to ${label}`}
-                aria-current={active ? 'true' : undefined}
-              >
-                <span
-                  className={`text-xs transition-colors ${
-                    active
-                      ? 'text-foreground'
-                      : 'text-muted opacity-0 group-hover:opacity-100'
-                  }`}
+      <div className="flex flex-col items-end gap-4">
+        <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
+          sections
+        </p>
+        <ul className="flex flex-col items-end gap-2.5 border-r border-white/10 pr-4">
+          {HOME_SECTIONS.map(({ id, label }) => {
+            const active = activeId === id
+            return (
+              <li key={id}>
+                <button
+                  type="button"
+                  onClick={() => scrollTo(id)}
+                  className="group flex items-center gap-2 font-mono text-xs"
+                  aria-label={`Go to ${label}`}
+                  aria-current={active ? 'true' : undefined}
                 >
-                  {label}
-                </span>
-                <span
-                  className={`block rounded-full transition-all ${
-                    active
-                      ? 'size-2.5 bg-primary shadow-[0_0_8px_rgba(220,38,38,0.6)]'
-                      : 'size-2 border border-muted/50 bg-transparent group-hover:border-primary/50'
-                  }`}
-                />
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+                  <span
+                    className={`transition-colors ${
+                      active
+                        ? 'text-primary'
+                        : 'text-muted/60 opacity-90 group-hover:text-foreground'
+                    }`}
+                  >
+                    {active ? '*' : '·'}
+                  </span>
+                  <span
+                    className={`transition-colors ${
+                      active
+                        ? 'text-primary'
+                        : 'text-muted/60 opacity-90 group-hover:text-foreground'
+                    }`}
+                  >
+                    {label}
+                  </span>
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </nav>
   )
 }
