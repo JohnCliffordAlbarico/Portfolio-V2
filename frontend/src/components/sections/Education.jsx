@@ -8,7 +8,7 @@ const education = [
     title: 'Bachelor of Science in Information Technology — Cum Laude',
     school: 'Cebu Technological University - Naga Extension Campus',
     location: 'City of Naga, Cebu, Philippines',
-    path: 'CTU-Naga/bsit/cum-laude',
+    path: 'CTU-Naga/BSIT/cum laude',
     year: '2022 – 2026',
     description:
       'Comprehensive foundation in software development, system design, and technology management with consistent academic excellence throughout the program.',
