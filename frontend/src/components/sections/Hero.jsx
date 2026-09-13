@@ -46,14 +46,72 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-lg overflow-hidden rounded-xl border border-white/10 bg-surface/60 text-left font-mono text-sm md:mx-0">
-            <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-3.5 py-2.5">
+          <Link
+            to="/projects"
+            className="group mx-auto block w-full max-w-lg border-l-2 border-primary/60 pl-4 text-left transition-colors md:mx-0"
+          >
+            <p className="text-base font-semibold text-foreground transition-colors group-hover:text-primary">
+              These are projects worth looking into.
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">
+              Real systems running real operations — clinic management,
+              desktop controllers, live builds, each with a full case study.
+            </p>
+            <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors group-hover:text-accent">
+              See the builds <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-[0_0_24px_-8px_rgba(220,38,38,0.8)] transition-all hover:-translate-y-px hover:bg-accent"
+            >
+              View Projects
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary"
+            >
+              Contact Me
+            </Link>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-2 py-2.5 text-sm text-muted transition-colors hover:text-foreground"
+            >
+              Resume
+              <Download size={14} />
+            </a>
+          </div>
+        </div>
+
+        <div className="w-72 shrink-0 sm:w-80">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-surface shadow-[0_0_40px_-12px_rgba(220,38,38,0.35)]">
+            <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
               <span className="size-2.5 rounded-full bg-primary/80" />
               <span className="size-2.5 rounded-full bg-primary/40" />
               <span className="size-2.5 rounded-full bg-primary/20" />
-              <span className="ml-3 text-xs text-muted">bash — 80×24</span>
+              <span className="ml-3 font-mono text-xs text-muted">
+                ~/me
+              </span>
             </div>
-            <div className="space-y-1.5 px-4 py-3.5 leading-relaxed">
+            <img
+              src={profileImage}
+              alt="John Clifford M. Albarico"
+              className="h-80 w-full object-cover object-center sm:h-96"
+            />
+            <div className="flex gap-6 border-t border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-xs text-muted">
+              {meta.map(({ icon: Icon, label, value }) => (
+                <span key={label} className="flex items-center gap-1.5">
+                  <Icon size={12} className="text-primary" />
+                  {label}:<span className="text-foreground">{value}</span>
+                </span>
+              ))}
+            </div>
+            <div className="space-y-1.5 border-t border-white/10 px-4 py-3.5 font-mono text-sm leading-relaxed">
               <p className="w-full">
                 <span className="text-primary">$</span>{' '}
                 <span className="text-muted">whoami</span>
@@ -77,55 +135,6 @@ export default function Hero() {
                 available for work
               </p>
             </div>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent"
-            >
-              View Projects
-              <ArrowRight size={16} />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary"
-            >
-              Contact Me
-            </Link>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-2 py-2.5 text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Resume
-              <Download size={14} />
-            </a>
-          </div>
-        </div>
-
-        <div className="shrink-0 overflow-hidden rounded-xl border border-white/10 bg-surface shadow-[0_0_40px_-12px_rgba(220,38,38,0.35)]">
-          <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
-            <span className="size-2.5 rounded-full bg-primary/80" />
-            <span className="size-2.5 rounded-full bg-primary/40" />
-            <span className="size-2.5 rounded-full bg-primary/20" />
-            <span className="ml-3 font-mono text-xs text-muted">
-              ~/me.jpg
-            </span>
-          </div>
-          <img
-            src={profileImage}
-            alt="John Clifford M. Albarico"
-            className="h-80 w-72 object-cover object-center sm:h-96 sm:w-80"
-          />
-          <div className="flex gap-6 border-t border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-xs text-muted">
-            {meta.map(({ icon: Icon, label, value }) => (
-              <span key={label} className="flex items-center gap-1.5">
-                <Icon size={12} className="text-primary" />
-                {label}:<span className="text-foreground">{value}</span>
-              </span>
-            ))}
           </div>
         </div>
       </div>
