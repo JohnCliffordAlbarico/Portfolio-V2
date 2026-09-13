@@ -10,6 +10,7 @@ const categories = [
   {
     title: 'Client Projects',
     icon: Briefcase,
+    slug: 'bacaltos-healthcare-system',
     project: {
       image: '/bacaltosproject/MAIN UI.png',
       offline: true,
@@ -23,6 +24,7 @@ const categories = [
   {
     title: 'Personal Projects',
     icon: User,
+    slug: 'yuuko-workspace',
     project: {
       image: workspaceImg,
       url: 'https://yuuko-workspace.onrender.com/',
@@ -37,6 +39,7 @@ const categories = [
   {
     title: 'Capstone Project',
     icon: GraduationCap,
+    slug: 'bacaltos-clinic',
     project: {
       image: bacaltosImg,
       url: 'https://bacaltosclinic.onrender.com/',
@@ -60,7 +63,7 @@ export default function FeaturedProjects() {
         />
 
         <div className="space-y-12">
-          {categories.map(({ title, icon: Icon, project }) => (
+          {categories.map(({ title, icon: Icon, slug, project }) => (
             <div key={title}>
               <div className="mb-4 flex items-center gap-2">
                 <Icon size={16} className="text-primary" />
@@ -144,6 +147,12 @@ export default function FeaturedProjects() {
                       </div>
 
                       <div className="mt-4 flex items-center gap-3">
+                        <Link
+                          to={`/projects/${slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground transition-colors hover:text-primary"
+                        >
+                          Case Study &rarr;
+                        </Link>
                         {project.url && (
                           <a
                             href={project.url}
