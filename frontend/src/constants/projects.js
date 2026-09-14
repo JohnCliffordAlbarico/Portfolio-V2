@@ -344,6 +344,118 @@ export const PROJECTS = [
     images: [],
     assetImage: 'bacaltos',
   },
+  {
+    slug: 'flowiq',
+    category: 'Personal Projects',
+    title: 'FlowIQ',
+    outcome:
+      'An AI-assisted workspace for job applications — paste a job posting or a recruiter message and FlowIQ classifies it, scores requirements against your profile and resume, drafts a tailored reply, and sends only with your approval.',
+    description:
+      'Human-in-the-loop automation throughout: intake returns a pending row immediately while fetch, analysis, and ingestion proceed in a background queue with boot recovery. Every send records snapshots plus transport metadata.',
+    role: 'Sole developer',
+    type: 'Personal project',
+    platform: 'Web app',
+    focus: 'Intake · RAG analysis · approval-gated send',
+    timeline: 'Personal build',
+    status: 'Live · Cloudflare Pages',
+    tags: ['React', 'Express', 'Node.js', 'PostgreSQL', 'pgvector', 'Gemini'],
+    brief: {
+      problem:
+        'Job hunting means re-reading postings, comparing requirements against a resume, and writing custom replies from scratch. Doing that across dozens of roles is slow and easy to get wrong.',
+      approach:
+        'I built one pipeline for it: classify the input and pick an intent, extract structured requirements, retrieve resume evidence with pgvector RAG, generate a draft with provenance, then hold for human approval before sending and recording the application.',
+    },
+    modules: [
+      {
+        title: 'Intake & Intent',
+        text: 'Job URLs and free-text recruiter messages with AI classification and an explicit apply, reply, or ignore choice.',
+      },
+      {
+        title: 'Extraction Pipeline',
+        text: 'Structured data from JSON-LD and embedded page state, Readability fallback, honest handling of JS shells and login walls.',
+      },
+      {
+        title: 'Requirement Fit Analysis',
+        text: 'Typed requirements, weighted fit score, gaps, and per-requirement evidence drawn from the resume via RAG.',
+      },
+      {
+        title: 'Drafting with Provenance',
+        text: 'Cover letters and replies generated against retrieved resume excerpts, previewed and editable before anything sends.',
+      },
+      {
+        title: 'Send & Application Ledger',
+        text: 'Gmail OAuth with AES-256-GCM token storage or SMTP fallback, resume PDF attached, drafts persisted with retry and audit trail.',
+      },
+      {
+        title: 'Workflows & Guardrails',
+        text: 'Templated runs with approval gates and step history, per-user hourly quotas, Better Auth OTP plus Google sign-in.',
+      },
+    ],
+    stackGroups: [
+      {
+        label: 'Application',
+        chips: [
+          { label: 'React.js', hot: true },
+          { label: 'Express.js', hot: true },
+          { label: 'REST API', hot: false },
+          { label: 'Node.js', hot: false },
+          { label: 'Better Auth', hot: false },
+        ],
+      },
+      {
+        label: 'Data & AI',
+        chips: [
+          { label: 'PostgreSQL + pgvector', hot: true },
+          { label: 'Gemini', hot: true },
+          { label: 'Drizzle ORM', hot: false },
+          { label: 'Gmail API / SMTP', hot: false },
+        ],
+      },
+    ],
+    results: [
+      { value: '01', label: 'Live AI workspace with approval gates' },
+      { value: '09', label: 'Pipeline stages from intake to send plus audit' },
+      { value: '18', label: 'Committed Drizzle migrations on pgvector' },
+    ],
+    architecture: [
+      'React frontend',
+      'Express API + background queue',
+      'Gemini classify / analyze / draft',
+      'Postgres + pgvector RAG',
+      'Gmail / SMTP send + ledger',
+    ],
+    links: {
+      live: 'https://flowiqai.pages.dev/',
+      github: 'https://github.com/JohnCliffordAlbarico/FlowIQ',
+    },
+    client: null,
+    images: [
+      {
+        src: '/flowiq/flowiq-maindashboard.png',
+        title: 'Workspace Dashboard',
+        description:
+          'Main workspace greeting with paste, fetch, and recruiter-email actions plus quota pills. Nothing is submitted without approval.',
+        tags: ['React', 'Workflows', 'RAG'],
+        status: 'live',
+      },
+      {
+        src: '/flowiq/flowiq-login.png',
+        title: 'Sign In',
+        description:
+          'Sign-in with email and password plus Google sign-in, remember-me, and encrypted private workspace messaging.',
+        tags: ['React', 'Better Auth'],
+        status: 'live',
+      },
+      {
+        src: '/flowiq/flowiq-register.png',
+        title: 'Create Account',
+        description:
+          'One-minute signup with full name, email verification code, and Google sign-in to start building momentum.',
+        tags: ['React', 'Better Auth'],
+        status: 'live',
+      },
+    ],
+  },
 ]
 
 export function getProject(slug) {

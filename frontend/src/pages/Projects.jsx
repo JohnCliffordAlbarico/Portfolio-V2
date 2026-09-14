@@ -19,7 +19,8 @@ import bacaltosImg from '../assets/bacaltosproject.jpg'
 import workspaceImg from '../assets/yuukoworkspace.jpg'
 
 const FALLBACK_COVER = { workspace: workspaceImg, bacaltos: bacaltosImg }
-const FEATURED_SLUG = 'bacaltos-healthcare-system'
+const FEATURED_SLUGS = ['bacaltos-healthcare-system', 'flowiq']
+const FEATURED_INTERVAL_MS = 8000
 
 const TECH_FILTERS = [
   { label: 'React', icon: SiReact, color: '#61DAFB' },
@@ -231,8 +232,37 @@ export default function Projects() {
   }, [query, techs, searchStacks])
 
   const filtering = query.trim() !== '' || techs.length > 0
-  const featured = PROJECTS.find((p) => p.slug === FEATURED_SLUG) ?? PROJECTS[0]
-  const indexList = results.filter((p) => p.slug !== featured.slug)
+  const featuredList = useMemo(
+    () =>
+      FEATURED_SLUGS.map((slug) => PROJECTS.find((p) => p.slug === slug)).filter(
+        Boolean,
+      ),
+    [],
+  )
+  const [featuredIdx, setFeaturedIdx] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const indexList = results.filter((p) => !FEATURED_SLUGS.includes(p.slug))
+  const featuredMatch = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q && !techs.length) return null
+    return (
+      featuredList.find((p) => {
+        if (techs.length && !techs.every((t) => p.tags.includes(t))) return false
+        return searchStacks[PROJECTS.indexOf(p)]?.includes(q) || !q
+      }) ?? null
+    )
+  }, [query, techs, featuredList, searchStacks])
+
+  useEffect(() => {
+    if (paused || featuredList.length < 2) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = setInterval(() => {
+      if (document.hidden) return
+      setFeaturedIdx((i) => (i + 1) % featuredList.length)
+    }, FEATURED_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [paused, featuredList.length])
 
   const toggleTech = (t) =>
     setTechs((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]))
@@ -241,88 +271,167 @@ export default function Projects() {
     setTechs([])
   }
 
-  const featuredCover = coverFor(featured)
-
   return (
     <main id="top" className="px-6 pb-16 pt-14 sm:pt-20">
       <div className="mx-auto max-w-6xl">
-        {/* featured project — always showcased, never filtered */}
+        {/* featured showcase — pure auto crossfade, no controls, never filtered */}
         <ScrollReveal distance={32}>
-            <article className="grid gap-8 border-b-2 border-foreground/80 pb-8 pt-2 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
-              <div className="min-w-0">
-                <p className="font-mono text-xs uppercase tracking-[0.14em] text-primary">
-                  Featured — {featured.type}
-                </p>
-                <Link
-                  to={`/projects/${featured.slug}`}
-                  className="mt-2 block text-3xl font-bold leading-[1.02] tracking-tight transition-colors hover:text-primary sm:text-4xl"
+            <div
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              onFocus={() => setPaused(true)}
+              onBlur={() => setPaused(false)}
+              className="relative border-b-2 border-foreground/80 pb-8 pt-2"
+            >
+              <div aria-live="polite" className="grid">
+                {featuredList.map((p, i) => {
+                  const active = i === featuredIdx
+                  const cover = coverFor(p)
+                  const rise = (delay) => ({
+                    style: { transitionDelay: active ? `${delay}ms` : '0ms' },
+                    className: `transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      active
+                        ? 'translate-y-0 opacity-100 blur-0'
+                        : 'pointer-events-none translate-y-4 opacity-0 blur-[6px]'
+                    }`,
+                  })
+                  const eyebrow = rise(0)
+                  const title = rise(70)
+                  const outcome = rise(140)
+                  const facts = rise(210)
+                  const ctas = rise(280)
+                  const visual = rise(150)
+                  return (
+                    <article
+                      key={p.slug}
+                      aria-hidden={!active}
+                      inert={!active || undefined}
+                      className={`col-start-1 row-start-1 grid gap-8 transition-[opacity,visibility] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 ${
+                        active ? 'visible opacity-100' : 'invisible opacity-0'
+                      }`}
+                    >
+                      <div className="min-w-0">
+                        <p
+                          style={eyebrow.style}
+                          className={`font-mono text-xs uppercase tracking-[0.14em] text-primary ${eyebrow.className}`}
+                        >
+                          Featured — {p.type}
+                        </p>
+                        <Link
+                          to={`/projects/${p.slug}`}
+                          tabIndex={active ? 0 : -1}
+                          style={title.style}
+                          className={`mt-2 block text-3xl font-bold leading-[1.02] tracking-tight transition-colors hover:text-primary sm:text-4xl ${title.className}`}
+                        >
+                          {p.title}
+                        </Link>
+                        <p
+                          style={outcome.style}
+                          className={`mt-3 max-w-lg leading-relaxed text-muted ${outcome.className}`}
+                        >
+                          {p.outcome}
+                        </p>
+                        <dl
+                          style={facts.style}
+                          className={`mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-4 ${facts.className}`}
+                        >
+                          {[
+                            ['Role', p.role],
+                            ['Runs on', p.platform],
+                            ['State', p.status],
+                          ].map(([k, v]) => (
+                            <div key={k} className="min-w-0">
+                              <dt className="font-mono text-[11px] uppercase tracking-wider text-muted">
+                                {k}
+                              </dt>
+                              <dd className="mt-1 truncate text-sm text-foreground/90" title={v}>
+                                {v}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                        <div
+                          style={ctas.style}
+                          className={`mt-5 min-h-[44px] ${ctas.className}`}
+                        >
+                          <ProjectLinks project={p} />
+                        </div>
+                        <p className="mt-3 min-h-4 text-xs leading-relaxed text-muted">
+                          {p.client ? (
+                            <>
+                              Built for {p.client.name} ·{' '}
+                              <a
+                                href={`mailto:${p.client.email}`}
+                                tabIndex={active ? 0 : -1}
+                                className="text-primary hover:underline"
+                              >
+                                {p.client.email}
+                              </a>
+                            </>
+                          ) : null}
+                        </p>
+                      </div>
+                      <div className="flex min-w-0 flex-col">
+                        <div
+                          style={visual.style}
+                          className={`flex h-full flex-col ${visual.className}`}
+                        >
+                          {cover && (
+                            <div className="h-full flex-1 overflow-hidden rounded-lg border border-white/10 bg-black/40">
+                              <button
+                                type="button"
+                                tabIndex={active ? 0 : -1}
+                                onClick={() =>
+                                  setZoom({ images: zoomImagesFor(p), index: 0 })
+                                }
+                                aria-label={`Enlarge ${p.title} preview`}
+                                className="group block h-full w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                              >
+                                <img
+                                  src={cover}
+                                  alt=""
+                                  aria-hidden="true"
+                                  loading="eager"
+                                  className={`aspect-[16/10] h-full min-h-[280px] w-full object-cover object-center transition-transform duration-[8000ms] ease-linear group-hover:scale-[1.015] lg:aspect-auto lg:min-h-[320px] ${
+                                    active ? 'scale-100' : 'scale-[1.04]'
+                                  }`}
+                                />
+                              </button>
+                            </div>
+                          )}
+                          <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                            {p.tags.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-muted"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                            <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[11px] text-muted">
+                              <StatusDot live={Boolean(p.links?.live)} />
+                              {p.images?.length ?? 0} frames in the case study
+                              <ArrowUpRight size={12} aria-hidden="true" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
+              {featuredList.length > 1 && (
+                <div
+                  aria-hidden="true"
+                  className="mt-6 h-[2px] overflow-hidden rounded-full bg-white/10"
                 >
-                  {featured.title}
-                </Link>
-                <p className="mt-3 max-w-lg leading-relaxed text-muted">{featured.outcome}</p>
-                <dl className="mt-6 border-t border-white/10">
-                  {[
-                    ['Role', featured.role],
-                    ['Runs on', featured.platform],
-                    ['State', featured.status],
-                  ].map(([k, v]) => (
-                    <div
-                      key={k}
-                      className="flex items-baseline justify-between gap-6 border-b border-white/10 py-2 text-sm"
-                    >
-                      <dt className="font-mono text-[11px] uppercase tracking-wider text-muted">{k}</dt>
-                      <dd className="text-right text-foreground/90">{v}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="mt-5">
-                  <ProjectLinks project={featured} />
+                  <span
+                    key={featuredIdx}
+                    className="block h-full origin-left animate-[featured-fill_8s_linear_forwards] bg-primary/80"
+                  />
                 </div>
-                {featured.client && (
-                  <p className="mt-4 text-xs leading-relaxed text-muted">
-                    Built for {featured.client.name} ·{' '}
-                    <a href={`mailto:${featured.client.email}`} className="text-primary hover:underline">
-                      {featured.client.email}
-                    </a>
-                  </p>
-                )}
-              </div>
-              <div className="min-w-0">
-                {featuredCover && (
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setZoom({ images: zoomImagesFor(featured), index: 0 })
-                    }
-                    aria-label={`Enlarge ${featured.title} preview`}
-                    className="group block w-full overflow-hidden rounded-lg border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    <img
-                      src={featuredCover}
-                      alt=""
-                      aria-hidden="true"
-                      loading="eager"
-                      className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.015]"
-                    />
-                  </button>
-                )}
-                <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                  {featured.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-muted"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                  <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[11px] text-muted">
-                    <StatusDot live={false} />
-                    {featured.images?.length ?? 0} frames in the case study
-                    <ArrowUpRight size={12} aria-hidden="true" />
-                  </span>
-                </div>
-              </div>
-            </article>
+              )}
+            </div>
           </ScrollReveal>
 
         {/* tech stack + search */}
@@ -424,6 +533,12 @@ export default function Projects() {
               {query.trim() && (
                 <>
                   {' '}for “<span className="text-foreground">{query.trim()}</span>”
+                </>
+              )}
+              {featuredMatch && (
+                <>
+                  {' '}· <span className="text-foreground">{featuredMatch.title}</span> is showing
+                  in featured above
                 </>
               )}
             </>

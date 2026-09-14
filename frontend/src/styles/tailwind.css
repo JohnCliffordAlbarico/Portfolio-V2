@@ -25,6 +25,11 @@
   100% { transform: translate3d(-2.5rem, 3rem, 0) scale(0.95); }
 }
 
+@keyframes featured-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4rem;
