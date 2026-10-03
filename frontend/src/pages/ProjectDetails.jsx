@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
 import ImageModal from '../components/DevModal'
 import ScrollReveal from '../components/ScrollReveal'
+import CategoryBadge from '../components/CategoryBadge'
 import { getProject, PROJECTS } from '../constants/projects'
 import bacaltosImg from '../assets/bacaltosproject.jpg'
 import workspaceImg from '../assets/yuukoworkspace.jpg'
@@ -67,7 +68,7 @@ function Frame({ shot, slug, onZoom, wide }) {
           src={shot.src}
           alt={shot.title}
           loading={wide ? 'eager' : 'lazy'}
-          className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.015] ${
+          className={`w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015] ${
             wide ? 'aspect-[16/9]' : 'aspect-[16/10]'
           }`}
         />
@@ -146,8 +147,9 @@ export default function ProjectDetails() {
               <span className="rounded-md bg-primary px-2.5 py-1 font-semibold text-white shadow-[0_0_20px_-6px_rgba(220,38,38,0.8)]">
                 Case study
               </span>
-              <span className="break-words text-primary">
-                {project.category} — {project.timeline}
+              <CategoryBadge category={project.category} />
+              <span className="break-words normal-case tracking-normal text-muted">
+                {project.timeline}
               </span>
             </p>
             <h1 className="mt-3 break-words text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl">
@@ -548,7 +550,7 @@ export default function ProjectDetails() {
             <span className="mt-1.5 block font-medium transition-colors group-hover:text-primary">
               {prev.title}
             </span>
-            <span className="mt-1 block font-mono text-xs text-muted">{prev.category}</span>
+            <span className="mt-2 block"><CategoryBadge category={prev.category} /></span>
           </Link>
           <Link
             to={`/projects/${next.slug}`}
@@ -558,7 +560,7 @@ export default function ProjectDetails() {
             <span className="mt-1.5 block font-medium transition-colors group-hover:text-primary">
               {next.title}
             </span>
-            <span className="mt-1 block font-mono text-xs text-muted">{next.category}</span>
+            <span className="mt-2 block sm:flex sm:justify-end"><CategoryBadge category={next.category} /></span>
           </Link>
         </div>
       </nav>

@@ -12,7 +12,7 @@ export const PROJECTS = [
     platform: 'Responsive website',
     focus: 'Booking inquiries · content · performance',
     timeline: 'Client work',
-    status: 'Live · Vercel',
+    status: 'Live',
     tags: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
     brief: {
       problem:
@@ -561,4 +561,14 @@ export const PROJECTS = [
 
 export function getProject(slug) {
   return PROJECTS.find((p) => p.slug === slug)
+}
+
+export const CATEGORY_COLORS = {
+  'Client Projects': '#60A5FA',
+  'Personal Projects': '#34D399',
+  'Capstone Project': '#FBBF24',
+}
+
+export function categoryColor(category) {
+  return CATEGORY_COLORS[category] ?? '#DC2626'
 }

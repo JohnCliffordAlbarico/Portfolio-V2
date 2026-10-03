@@ -17,6 +17,7 @@ import {
 } from 'react-icons/si'
 import ScrollReveal from '../components/ScrollReveal'
 import ImageModal from '../components/DevModal'
+import CategoryBadge from '../components/CategoryBadge'
 import { PROJECTS } from '../constants/projects'
 import bacaltosImg from '../assets/bacaltosproject.jpg'
 import workspaceImg from '../assets/yuukoworkspace.jpg'
@@ -161,7 +162,7 @@ function IndexRow({ project, query, activeTechs, onZoom }) {
             alt=""
             aria-hidden="true"
             loading="lazy"
-            className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            className="aspect-video w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
         </button>
       ) : (
@@ -177,7 +178,7 @@ function IndexRow({ project, query, activeTechs, onZoom }) {
           </Link>
           <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted">
             <StatusDot live={Boolean(project.links?.live)} />
-            {project.category}
+            <CategoryBadge category={project.category} />
           </span>
         </div>
         <p className="mt-1.5 line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted">
@@ -248,17 +249,7 @@ export default function Projects() {
   const [featuredIdx, setFeaturedIdx] = useState(0)
   const [paused, setPaused] = useState(false)
 
-  const indexList = results.filter((p) => !FEATURED_SLUGS.includes(p.slug))
-  const featuredMatch = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    if (!q && !techs.length) return null
-    return (
-      featuredList.find((p) => {
-        if (techs.length && !techs.every((t) => p.tags.includes(t))) return false
-        return searchStacks[PROJECTS.indexOf(p)]?.includes(q) || !q
-      }) ?? null
-    )
-  }, [query, techs, featuredList, searchStacks])
+  const indexList = results
 
   useEffect(() => {
     if (paused || featuredList.length < 2) return
@@ -395,7 +386,7 @@ export default function Projects() {
                           className={`flex h-full flex-col ${visual.className}`}
                         >
                           {cover && (
-                            <div className="h-full flex-1 overflow-hidden rounded-lg border border-white/10 bg-black/40">
+                            <div className="relative aspect-[16/10] w-full flex-1 overflow-hidden rounded-lg border border-white/10 bg-black/40 lg:aspect-[16/9] lg:min-h-[320px]">
                               <button
                                 type="button"
                                 tabIndex={active ? 0 : -1}
@@ -410,7 +401,7 @@ export default function Projects() {
                                   alt=""
                                   aria-hidden="true"
                                   loading="eager"
-                                  className={`aspect-[16/10] h-full min-h-[280px] w-full object-cover object-center transition-transform duration-[8000ms] ease-linear group-hover:scale-[1.015] lg:aspect-auto lg:min-h-[320px] ${
+                                  className={`h-full min-h-[280px] w-full object-cover object-top transition-transform duration-[8000ms] ease-linear group-hover:scale-[1.015] lg:min-h-[320px] ${
                                     active ? 'scale-100' : 'scale-[1.04]'
                                   }`}
                                 />
@@ -551,12 +542,6 @@ export default function Projects() {
               {query.trim() && (
                 <>
                   {' '}for “<span className="text-foreground">{query.trim()}</span>”
-                </>
-              )}
-              {featuredMatch && (
-                <>
-                  {' '}· <span className="text-foreground">{featuredMatch.title}</span> is showing
-                  in featured above
                 </>
               )}
             </>

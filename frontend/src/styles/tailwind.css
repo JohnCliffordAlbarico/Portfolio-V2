@@ -12,6 +12,7 @@
   --animate-blink: blink 1s step-end infinite;
   --animate-drift: drift 45s ease-in-out infinite alternate;
   --animate-drift-reverse: drift 60s ease-in-out infinite alternate-reverse;
+  --animate-marquee: marquee 32s linear infinite;
 }
 
 @keyframes blink {
@@ -28,6 +29,10 @@
 @keyframes featured-fill {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }
 
 html {

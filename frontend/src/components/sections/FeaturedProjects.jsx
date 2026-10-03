@@ -3,6 +3,8 @@ import { ExternalLink, Briefcase, User, GraduationCap } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
 import ScrollReveal from '../ScrollReveal'
 import SectionHeading from '../SectionHeading'
+import CategoryBadge from '../CategoryBadge'
+import { categoryColor } from '../../constants/projects'
 import bacaltosImg from '../../assets/bacaltosproject.jpg'
 import workspaceImg from '../../assets/yuukoworkspace.jpg'
 
@@ -66,8 +68,11 @@ export default function FeaturedProjects() {
           {categories.map(({ title, icon: Icon, slug, project }) => (
             <div key={title}>
               <div className="mb-4 flex items-center gap-2">
-                <Icon size={16} className="text-primary" />
-                <h3 className="text-sm font-medium uppercase tracking-wider text-primary">
+                <Icon size={16} style={{ color: categoryColor(title) }} />
+                <h3
+                  className="text-sm font-medium uppercase tracking-wider"
+                  style={{ color: categoryColor(title) }}
+                >
                   {title}
                 </h3>
               </div>
@@ -124,6 +129,7 @@ export default function FeaturedProjects() {
                       </span>
                     </div>
                     <div className="flex flex-col p-5">
+                      <CategoryBadge category={title} className="mb-2.5 self-start" />
                       <h4 className="font-medium leading-snug">{project.title}</h4>
                       <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">
                         {project.description}
