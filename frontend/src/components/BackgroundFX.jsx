@@ -4,8 +4,8 @@ export default function BackgroundFX() {
       <div className="bg-grid absolute inset-0" />
       <div className="bg-grid-lines absolute inset-0" />
       <div className="scanlines absolute inset-0" />
-      <div className="glow-orb animate-drift left-1/2 top-[-8rem] h-[32rem] w-[42rem] -translate-x-1/2 bg-primary/13 motion-reduce:animate-none" />
-      <div className="glow-orb animate-drift-reverse bottom-[-12rem] right-[-10rem] h-[28rem] w-[34rem] bg-primary/10 motion-reduce:animate-none" />
+      <div className="glow-orb animate-drift left-1/2 top-[-8rem] h-[32rem] w-[42rem] -translate-x-1/2 motion-reduce:animate-none" style={{ background: 'radial-gradient(closest-side, rgba(220,38,38,0.16), transparent)' }} />
+      <div className="glow-orb animate-drift-reverse bottom-[-12rem] right-[-10rem] h-[28rem] w-[34rem] motion-reduce:animate-none" style={{ background: 'radial-gradient(closest-side, rgba(220,38,38,0.12), transparent)' }} />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-45" />
     </div>
   )

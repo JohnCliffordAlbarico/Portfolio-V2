@@ -13,6 +13,7 @@ export default function ScrollReveal({
     '(prefers-reduced-motion: reduce)',
   ).matches
   const [visible, setVisible] = useState(reducedMotion || false)
+  const [settled, setSettled] = useState(reducedMotion || false)
 
   useEffect(() => {
     const el = ref.current
@@ -39,6 +40,12 @@ export default function ScrollReveal({
     return () => observer.disconnect()
   }, [immediate, reducedMotion])
 
+  useEffect(() => {
+    if (!visible || settled) return
+    const timer = setTimeout(() => setSettled(true), duration + delay + 50)
+    return () => clearTimeout(timer)
+  }, [visible, settled, duration, delay])
+
   return (
     <div
       ref={ref}
@@ -51,7 +58,7 @@ export default function ScrollReveal({
         transition: visible
           ? `opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`
           : 'none',
-        willChange: 'opacity, transform',
+        willChange: settled ? 'auto' : 'opacity, transform',
       }}
     >
       {children}

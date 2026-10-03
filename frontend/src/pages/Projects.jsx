@@ -288,8 +288,8 @@ export default function Projects() {
                     style: { transitionDelay: active ? `${delay}ms` : '0ms' },
                     className: `transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       active
-                        ? 'translate-y-0 opacity-100 blur-0'
-                        : 'pointer-events-none translate-y-4 opacity-0 blur-[6px]'
+                        ? 'translate-y-0 opacity-100'
+                        : 'pointer-events-none translate-y-4 opacity-0'
                     }`,
                   })
                   const eyebrow = rise(0)
