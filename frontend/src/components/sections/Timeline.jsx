@@ -47,7 +47,7 @@ const events = [
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="px-6 py-24">
+    <section id="timeline" className="overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="git log"

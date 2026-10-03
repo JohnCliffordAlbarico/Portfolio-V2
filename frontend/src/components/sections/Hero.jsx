@@ -21,14 +21,14 @@ export default function Hero() {
   return (
     <section
       id="profile"
-      className="relative grid min-h-[calc(100vh-4rem)] place-items-center px-6"
+      className="relative grid min-h-[calc(100vh-4rem)] place-items-center overflow-x-clip px-4 py-12 sm:px-6 md:py-0"
     >
-      <div className="flex w-full max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
+      <div className="flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-center md:gap-20">
         <div className="space-y-6 text-center md:flex-1 md:text-left">
           <p className="font-mono text-sm text-primary">
             <span className="text-muted">//</span> software developer
           </p>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="break-words text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
             <span className="block">John Clifford M.</span>
             <span className="block">Albarico<span className="text-primary">.</span></span>
           </h1>
@@ -88,7 +88,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="w-72 shrink-0 sm:w-80">
+        <div className="w-full max-w-[20rem] shrink-0 sm:w-80">
           <div className="overflow-hidden rounded-xl border border-white/10 bg-surface shadow-[0_0_40px_-12px_rgba(220,38,38,0.35)]">
             <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
               <span className="size-2.5 rounded-full bg-primary/80" />

@@ -116,10 +116,10 @@ export default function ProjectDetails() {
   ].filter(([, v]) => Boolean(v))
 
   return (
-    <main>
+    <main className="overflow-x-clip">
       {/* breadcrumb + status */}
       <div className="border-b border-white/10">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-4 font-mono text-xs text-muted">
+        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-4 font-mono text-xs text-muted sm:px-6">
           <Link
             to="/projects"
             className="inline-flex items-center gap-2 transition-colors hover:text-primary"
@@ -139,18 +139,18 @@ export default function ProjectDetails() {
       </div>
 
       {/* hero: summary left, product showcase right */}
-      <section className="px-6 pb-14 pt-12 sm:pt-16">
+      <section className="px-4 pb-14 pt-12 sm:px-6 sm:pt-16">
         <div className="mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+          <div className="min-w-0">
             <p className="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-[0.14em]">
               <span className="rounded-md bg-primary px-2.5 py-1 font-semibold text-white shadow-[0_0_20px_-6px_rgba(220,38,38,0.8)]">
                 Case study
               </span>
-              <span className="text-primary">
+              <span className="break-words text-primary">
                 {project.category} — {project.timeline}
               </span>
             </p>
-            <h1 className="mt-3 text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl">
+            <h1 className="mt-3 break-words text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl">
               {project.title}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -161,12 +161,12 @@ export default function ProjectDetails() {
               {facts.map(([k, v]) => (
                 <div
                   key={k}
-                  className="flex items-baseline justify-between gap-6 border-b border-white/10 py-2.5 text-sm"
+                  className="flex items-baseline justify-between gap-4 border-b border-white/10 py-2.5 text-sm"
                 >
                   <dt className="shrink-0 font-mono text-xs uppercase tracking-wider text-muted">
                     {k}
                   </dt>
-                  <dd className="text-right text-foreground/90">{v}</dd>
+                  <dd className="min-w-0 break-words text-right text-foreground/90">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -291,7 +291,7 @@ export default function ProjectDetails() {
 
       {/* operating context */}
       {project.brief && (
-        <section className="border-t border-white/10 px-6 py-14">
+        <section className="border-t border-white/10 px-4 py-14 sm:px-6">
           <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-2">
             <ScrollReveal distance={28}>
               <div>
@@ -320,7 +320,7 @@ export default function ProjectDetails() {
       )}
 
       {/* capabilities ledger */}
-      <section className="border-t border-white/10 px-6 py-14">
+      <section className="border-t border-white/10 px-4 py-14 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <ScrollReveal distance={28}>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -356,7 +356,7 @@ export default function ProjectDetails() {
       </section>
 
       {/* system flow */}
-      <section className="border-t border-white/10 px-6 py-14">
+      <section className="border-t border-white/10 px-4 py-14 sm:px-6">
         <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.14em] text-primary">
@@ -451,7 +451,7 @@ export default function ProjectDetails() {
 
       {/* evidence viewer */}
       {images.length > 0 && (
-        <section className="border-t border-white/10 px-6 py-14">
+        <section className="border-t border-white/10 px-4 py-14 sm:px-6">
           <div className="mx-auto w-full max-w-6xl">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
@@ -537,7 +537,7 @@ export default function ProjectDetails() {
       {/* footer nav */}
       <nav
         aria-label="More projects"
-        className="border-t border-white/10 px-6 py-10"
+        className="border-t border-white/10 px-4 py-10 sm:px-6"
       >
         <div className="mx-auto grid w-full max-w-6xl gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2">
           <Link
@@ -552,7 +552,7 @@ export default function ProjectDetails() {
           </Link>
           <Link
             to={`/projects/${next.slug}`}
-            className="group bg-background p-6 text-right transition-colors hover:bg-surface"
+            className="group bg-background p-6 text-left transition-colors hover:bg-surface sm:text-right"
           >
             <span className="font-mono text-xs text-muted">Next &rarr;</span>
             <span className="mt-1.5 block font-medium transition-colors group-hover:text-primary">

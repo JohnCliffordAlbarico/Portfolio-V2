@@ -26,7 +26,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="min-h-[80vh] flex items-center px-6 py-24">
+    <section id="about" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full min-w-0 max-w-6xl">
         <SectionHeading
           eyebrow="developer"

@@ -278,7 +278,7 @@ export default function Projects() {
   }
 
   return (
-    <main id="top" className="px-6 pb-16 pt-14 sm:pt-20">
+    <main id="top" className="overflow-x-clip px-4 pb-16 pt-14 sm:px-6 sm:pt-20">
       <div className="mx-auto max-w-6xl">
         {/* featured showcase — pure auto crossfade, no controls, never filtered */}
         <ScrollReveal distance={32}>
@@ -339,7 +339,7 @@ export default function Projects() {
                         </p>
                         <dl
                           style={facts.style}
-                          className={`mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-4 ${facts.className}`}
+                          className={`mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-4 min-[480px]:grid-cols-3 ${facts.className}`}
                         >
                           {[
                             ['Role', p.role],
@@ -478,7 +478,7 @@ export default function Projects() {
               </span>
             )}
           </div>
-          <div className="grid grid-cols-4 gap-2 p-4 sm:grid-cols-8">
+          <div className="grid grid-cols-3 gap-2 p-3 min-[480px]:grid-cols-4 sm:p-4 lg:grid-cols-8">
             {TECH_FILTERS.map(({ label, icon: Icon, color }) => {
               const active = techs.includes(label)
               return (
@@ -500,7 +500,7 @@ export default function Projects() {
                     aria-hidden="true"
                     style={{ color, filter: `drop-shadow(0 0 6px ${color}55)` }}
                   />
-                  <span className="font-mono text-[10px] leading-tight">{label}</span>
+                  <span className="break-words text-center font-mono text-[10px] leading-tight">{label}</span>
                   <span
                     aria-hidden="true"
                     className="h-1 w-6 rounded-full transition-opacity"

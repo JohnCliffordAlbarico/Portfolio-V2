@@ -39,7 +39,7 @@ export default function Awards() {
   }))
 
   return (
-    <section id="awards" className="min-h-[80vh] flex items-center px-6 py-24">
+    <section id="awards" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full min-w-0 max-w-6xl">
         <SectionHeading
           eyebrow="achievements"
@@ -62,20 +62,20 @@ export default function Awards() {
                     className="size-full object-cover object-center transition-transform duration-300 hover:scale-105"
                   />
                 </button>
-                <div className="flex flex-col justify-center space-y-2 py-4 pr-4">
-                  <p className="font-mono text-xs text-primary">
+                <div className="flex min-w-0 flex-1 flex-col justify-center space-y-2 py-4 pr-4">
+                  <p className="break-words font-mono text-xs text-primary">
                     <span className="text-muted">badge:</span> {badge}
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-surface">
                       <Icon size={14} className="text-primary" />
                     </div>
-                    <h3 className="text-sm font-medium leading-snug">{title}</h3>
+                    <h3 className="break-words text-sm font-medium leading-snug">{title}</h3>
                   </div>
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
+                  <p className="break-words font-mono text-[10px] uppercase tracking-wider text-muted">
                     <span className="text-muted/50">achv:</span> {meta}
                   </p>
-                  <p className="text-xs text-muted leading-relaxed">{description}</p>
+                  <p className="break-words text-xs text-muted leading-relaxed">{description}</p>
                 </div>
               </article>
             </ScrollReveal>

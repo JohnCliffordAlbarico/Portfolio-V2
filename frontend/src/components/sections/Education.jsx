@@ -27,7 +27,7 @@ const education = [
 
 export default function Education() {
   return (
-    <section id="education" className="min-h-[80vh] flex items-center px-6 py-24">
+    <section id="education" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full min-w-0 max-w-6xl">
         <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
           Education
@@ -43,13 +43,13 @@ export default function Education() {
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-surface">
                   <Icon size={22} className="text-primary" />
                 </div>
-                <div className="space-y-2">
+                <div className="min-w-0 flex-1 space-y-2">
                   <p className="font-mono text-xs text-muted">
                     <span className="text-primary">~/</span>
                     {path}
                   </p>
-                  <h3 className="font-medium leading-snug">{title}</h3>
-                  <p className="text-sm font-medium text-foreground">{school}</p>
+                  <h3 className="break-words font-medium leading-snug">{title}</h3>
+                  <p className="break-words text-sm font-medium text-foreground">{school}</p>
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
                     <span className="flex items-center gap-1">
                       <MapPin size={12} />

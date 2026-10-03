@@ -9,7 +9,7 @@ export default function MainLayout() {
   const isHome = location.pathname === '/'
 
   return (
-    <div className="noise-overlay flex min-h-screen flex-col">
+    <div className="noise-overlay flex min-h-screen flex-col overflow-x-clip">
       <BackgroundFX />
       <Navbar />
 

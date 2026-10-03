@@ -101,7 +101,7 @@ function ProficiencyBar({ level }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-[80vh] flex items-center px-6 py-24">
+    <section id="skills" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full min-w-0 max-w-6xl">
         <SectionHeading
           eyebrow="dependencies"
@@ -122,13 +122,13 @@ export default function Skills() {
                   {items.map(({ name, icon: Icon, level }) => (
                     <li
                       key={name}
-                      className="flex items-center justify-between rounded-md border border-white/5 bg-background px-3 py-2 font-mono text-sm text-muted transition-colors hover:border-primary/20 hover:text-foreground"
+                      className="flex min-w-0 items-center justify-between gap-2 rounded-md border border-white/5 bg-background px-3 py-2 font-mono text-sm text-muted transition-colors hover:border-primary/20 hover:text-foreground"
                     >
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-muted/50">&quot;</span>
+                      <div className="flex min-w-0 items-center gap-2.5">
+                        <span className="shrink-0 text-muted/50">&quot;</span>
                         <Icon size={16} className="shrink-0" />
-                        {name}
-                        <span className="text-muted/50">&quot;</span>
+                        <span className="truncate">{name}</span>
+                        <span className="shrink-0 text-muted/50">&quot;</span>
                       </div>
                       <ProficiencyBar level={level} />
                     </li>

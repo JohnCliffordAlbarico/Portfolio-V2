@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md">
       <div className="dot-pattern pointer-events-none absolute inset-0 opacity-[0.15]" aria-hidden="true" />
-      <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           to="/"
           className="flex items-center gap-1 font-mono text-sm font-bold tracking-tight transition-opacity hover:opacity-80"
@@ -61,7 +61,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/5 bg-surface px-6 py-4 md:hidden">
+        <div className="border-t border-white/5 bg-surface px-4 py-4 sm:px-6 md:hidden">
           <ul className="flex flex-col gap-4">
             {NAV_LINKS.map(({ label, href }) => {
               const active = isNavActive(href)

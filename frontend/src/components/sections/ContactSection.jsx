@@ -12,7 +12,7 @@ const socials = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="min-h-[80vh] flex items-center px-6 py-24">
+    <section id="contact" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full max-w-2xl">
         <SectionHeading
           eyebrow="contact"

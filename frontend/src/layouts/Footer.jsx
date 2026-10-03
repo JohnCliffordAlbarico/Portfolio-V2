@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-surface">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-center sm:flex-row sm:px-6 sm:text-left">
         <p className="font-mono text-sm text-muted">
           <span className="text-foreground">~/JCADev</span>
           <span className="mx-2 text-primary">&middot;</span>

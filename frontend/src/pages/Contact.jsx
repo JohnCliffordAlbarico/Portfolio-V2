@@ -39,7 +39,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="px-6 py-16">
+    <div className="overflow-x-clip px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-2xl">
         <p className="mb-2 font-mono text-sm text-primary">
           <span className="text-muted">//</span> contact
@@ -70,7 +70,7 @@ export default function Contact() {
             className="flex flex-col gap-5 overflow-hidden rounded-xl border border-white/10 bg-surface"
           >
             <ChromeBar filename="contact.md" />
-            <div className="flex flex-col gap-5 p-8">
+            <div className="flex flex-col gap-5 p-5 sm:p-8">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-sm text-muted">

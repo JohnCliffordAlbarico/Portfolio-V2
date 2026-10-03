@@ -54,7 +54,7 @@ const categories = [
 
 export default function FeaturedProjects() {
   return (
-    <section id="projects" className="px-6 py-24">
+    <section id="projects" className="overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="projects"
