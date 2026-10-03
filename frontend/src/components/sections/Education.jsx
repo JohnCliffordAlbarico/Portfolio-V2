@@ -28,7 +28,7 @@ const education = [
 export default function Education() {
   return (
     <section id="education" className="min-h-[80vh] flex items-center px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto w-full min-w-0 max-w-6xl">
         <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
           Education
         </h2>

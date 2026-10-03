@@ -51,9 +51,10 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="text-foreground md:hidden"
+          className="-mr-2 inline-flex size-11 shrink-0 items-center justify-center text-foreground md:hidden"
           onClick={() => setOpen((prev) => !prev)}
           aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

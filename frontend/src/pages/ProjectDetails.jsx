@@ -19,6 +19,9 @@ const TECH_COLORS = {
   sqlite: '#4AA3DF',
   turso: '#4FF8D2',
   cloudflare: '#F6821F',
+  next: '#FFFFFF',
+  tailwind: '#38BDF8',
+  vercel: '#FFFFFF',
 }
 
 function techColor(label) {
@@ -206,6 +209,17 @@ export default function ProjectDetails() {
                 >
                   {project.client.email}
                 </a>
+                {project.client.phone && (
+                  <>
+                    {' '}·{' '}
+                    <a
+                      href={`tel:${project.client.phone.replace(/\s/g, '')}`}
+                      className="text-primary hover:underline"
+                    >
+                      {project.client.phone}
+                    </a>
+                  </>
+                )}
                 {project.client.facebook && (
                   <>
                     {' '}·{' '}

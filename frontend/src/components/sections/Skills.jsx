@@ -102,7 +102,7 @@ function ProficiencyBar({ level }) {
 export default function Skills() {
   return (
     <section id="skills" className="min-h-[80vh] flex items-center px-6 py-24">
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="mx-auto w-full min-w-0 max-w-6xl">
         <SectionHeading
           eyebrow="dependencies"
           title="Technical Skills"

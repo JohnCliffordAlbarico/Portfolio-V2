@@ -40,7 +40,7 @@ export default function Awards() {
 
   return (
     <section id="awards" className="min-h-[80vh] flex items-center px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto w-full min-w-0 max-w-6xl">
         <SectionHeading
           eyebrow="achievements"
           title="Awards & Certifications"

@@ -11,6 +11,9 @@ import {
   SiSqlite,
   SiTurso,
   SiCloudflare,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiVercel,
 } from 'react-icons/si'
 import ScrollReveal from '../components/ScrollReveal'
 import ImageModal from '../components/DevModal'
@@ -19,11 +22,13 @@ import bacaltosImg from '../assets/bacaltosproject.jpg'
 import workspaceImg from '../assets/yuukoworkspace.jpg'
 
 const FALLBACK_COVER = { workspace: workspaceImg, bacaltos: bacaltosImg }
-const FEATURED_SLUGS = ['bacaltos-healthcare-system', 'flowiq']
+const FEATURED_SLUGS = ['tanon-strait-resort', 'bacaltos-healthcare-system']
 const FEATURED_INTERVAL_MS = 8000
 
 const TECH_FILTERS = [
   { label: 'React', icon: SiReact, color: '#61DAFB' },
+  { label: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF' },
+  { label: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8' },
   { label: 'Express', icon: SiExpress, color: '#F5F5F5' },
   { label: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
   { label: 'Electron', icon: SiElectron, color: '#4DC6E8' },
@@ -31,6 +36,7 @@ const TECH_FILTERS = [
   { label: 'SQLite', icon: SiSqlite, color: '#4AA3DF' },
   { label: 'Turso', icon: SiTurso, color: '#4FF8D2' },
   { label: 'Cloudflare R2', icon: SiCloudflare, color: '#F6821F' },
+  { label: 'Vercel', icon: SiVercel, color: '#FFFFFF' },
 ]
 
 function coverFor(project) {
@@ -367,6 +373,18 @@ export default function Projects() {
                               >
                                 {p.client.email}
                               </a>
+                              {p.client.phone && (
+                                <>
+                                  {' '}·{' '}
+                                  <a
+                                    href={`tel:${p.client.phone.replace(/\s/g, '')}`}
+                                    tabIndex={active ? 0 : -1}
+                                    className="text-primary hover:underline"
+                                  >
+                                    {p.client.phone}
+                                  </a>
+                                </>
+                              )}
                             </>
                           ) : null}
                         </p>
