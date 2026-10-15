@@ -1,7 +1,7 @@
 import { PROJECTS } from './projects.js'
 
 export const SITE_URL = 'https://johncliffordalbarico.site'
-export const SITE_NAME = 'John Clifford Albarico — Software Developer'
+export const SITE_NAME = 'John Clifford Albarico — Software Developer & Technical Consultant'
 const PERSON_ID = `${SITE_URL}/#person`
 const WEBSITE_ID = `${SITE_URL}/#website`
 const DEFAULT_IMAGE = `${SITE_URL}/social-preview.jpg`
@@ -9,7 +9,7 @@ const DEFAULT_IMAGE = `${SITE_URL}/social-preview.jpg`
 const pages = {
   '/': {
     title: 'John Clifford Albarico | Software Developer in Cebu',
-    description: 'John Clifford Albarico is a software developer based in Cebu who creates websites, web applications, mobile apps, and desktop software.',
+    description: 'John Clifford Albarico is a software developer and technical consultant in Cebu, building websites, web applications, and mobile and desktop apps.',
     type: 'ProfilePage',
   },
   '/about': {
@@ -36,7 +36,7 @@ const person = {
   alternateName: ['John Clifford Albarico', 'Clifford Albarico'],
   url: `${SITE_URL}/`,
   image: `${SITE_URL}/icon2.jpg`,
-  jobTitle: 'Software Developer',
+  jobTitle: 'Software Developer & Technical Consultant',
   description: pages['/'].description,
   homeLocation: { '@type': 'Place', name: 'Cebu, Philippines' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Cebu Technological University – Naga Extension Campus' },

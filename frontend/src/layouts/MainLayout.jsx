@@ -28,9 +28,9 @@ export default function MainLayout() {
       <div className="portfolio-workspace">
         <ProfileSidebar />
         <div className="center-column">
-          <header className="workspace-toolbar">
+          {pagePath !== '/' && <header className="workspace-toolbar">
             <span className="metadata">{label}</span>
-          </header>
+          </header>}
           <main id="main-content" ref={mainRef} tabIndex={-1}>
             <Outlet key={pathname} />
           </main>

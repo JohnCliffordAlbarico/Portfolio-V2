@@ -9,7 +9,7 @@ export default function ProfileSidebar() {
         <img className="profile-photo" src={profileImage} alt="John Clifford M. Albarico" width="216" height="233" />
         <div>
           <p className="profile-name">John Clifford<br />Albarico</p>
-          <p className="profile-role">Software Developer</p>
+          <p className="profile-role">Software Developer &amp; Technical Consultant</p>
           <div className="profile-theme"><ThemeSelector /></div>
         </div>
       </div>

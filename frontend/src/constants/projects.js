@@ -6,8 +6,8 @@ export const PROJECTS = [
     outcome:
       'A resort website where guests can view rooms and rates, browse photos, and send booking inquiries.',
     description:
-      'I built the site for Tañon Strait Resort with Next.js and Tailwind CSS. It includes room listings, photo galleries, and an inquiry form that checks dates on the server. Staff confirm reservations and payments manually. The site runs on Vercel with Cloudflare DNS.',
-    role: 'Software Developer',
+      'I built the site for Tañon Strait Resort with Next.js and Tailwind CSS. It includes room listings, photo galleries, and an inquiry form that checks dates on the server. Staff confirm reservations and payments manually. I evaluated the hosting and domain setup, chose Vercel for deployment, and configured Cloudflare DNS for the resort’s custom domain.',
+    role: 'Software Developer & Technical Consultant',
     type: 'Paid client project',
     platform: 'Responsive website',
     focus: 'Booking inquiries · content · performance',

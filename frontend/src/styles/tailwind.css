@@ -69,15 +69,17 @@
 .resume-link:hover { text-decoration: underline; }
 .center-column { min-width: 0; }
 .workspace-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 30px; margin-bottom: 28px; }
-.theme-selector { display: inline-flex; gap: 4px; max-width: 100%; padding: 4px; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-soft); }
-.theme-choice { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 6px 9px; border-radius: 5px; color: var(--color-muted); font-size: 12px; font-weight: 500; line-height: 1.5; }
-.theme-choice:hover { color: var(--color-foreground); background: var(--color-surface); }
-:root:not([data-theme="dark"]) .theme-choice[data-color-theme="light"], :root[data-theme="dark"] .theme-choice[data-color-theme="dark"] { background: var(--color-primary); color: var(--color-inverse); }
-.theme-choice:focus-visible { outline-offset: -2px; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-soft); color: var(--color-foreground); font-size: 13px; font-weight: 500; line-height: 1.5; }
+.theme-toggle:hover { background: var(--color-surface); }
+.theme-toggle:focus-visible { outline-offset: 2px; }
+.theme-dark, :root[data-theme="dark"] .theme-light { display: none; }
+:root[data-theme="dark"] .theme-dark { display: inline; }
 .connection-theme { margin-bottom: 28px; }
 .profile-theme { display: none; }
+.overview-heading { margin-bottom: 30px; }
+.overview-heading h1 { margin: 0; font-size: 36px; line-height: 1.2; letter-spacing: -.035em; }
 .intro { padding-bottom: 38px; border-bottom: 1px solid var(--color-line); margin-bottom: 72px; }
-.intro h1 { margin: 0 0 24px; max-width: 720px; }
+.intro h2 { margin: 0 0 20px; max-width: 720px; font-size: 28px; font-weight: 500; line-height: 1.35; letter-spacing: -.025em; text-wrap: balance; }
 .intro-lead { margin: 0; max-width: 620px; font-size: 18px; line-height: 1.65; color: var(--color-muted); }
 .intro-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .page-heading p { margin: 0; font-size: 17px; line-height: 1.8; color: var(--color-muted); }
@@ -87,7 +89,7 @@
 .text-link:hover { color: var(--color-foreground); text-decoration: underline; }
 .section-heading .text-link { font-size: 12px; white-space: nowrap; }
 .project-list { display: grid; gap: 14px; }
-.project-row { display: grid; grid-template-columns: 128px minmax(0, 1fr) 20px; align-items: center; gap: 20px; min-width: 0; min-height: 132px; padding: 16px; border: 1px solid transparent; border-radius: 9px; background: var(--color-soft); transition: border-color .2s ease, background-color .2s ease; }
+.project-row { display: grid; grid-template-columns: 128px minmax(0, 1fr) auto; align-items: center; gap: 20px; min-width: 0; min-height: 132px; padding: 16px; border: 1px solid transparent; border-radius: 9px; background: var(--color-soft); transition: border-color .2s ease, background-color .2s ease; }
 .project-row:hover { border-color: var(--color-line); }
 .project-thumbnail { display: block; width: 128px; height: 104px; border: 1px solid var(--color-line); border-radius: 6px; overflow: hidden; background: var(--color-surface); }
 .project-thumbnail img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -96,9 +98,10 @@
 .project-row-content { min-width: 0; }
 .project-row p { margin: 12px 0 0; color: var(--color-muted); font-size: 16px; line-height: 1.75; }
 .project-row .project-summary { margin: 8px 0 10px; font-size: 16px; line-height: 1.6; color: var(--color-muted); }
-.project-row-arrow { display: grid; place-items: center; align-self: center; min-height: 44px; color: var(--color-muted); transition: transform .2s ease, color .2s ease; }
-.project-row:hover .project-row-arrow { transform: translate(2px, -2px); }
-.project-row-arrow:hover { color: var(--color-foreground); }
+.project-row-arrow { display: inline-flex; align-items: center; justify-content: center; align-self: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 6px; background: transparent; color: var(--color-foreground); font-size: 13px; font-weight: 600; line-height: 1.5; white-space: nowrap; transition: background-color .2s ease, color .2s ease; }
+.project-row-arrow:hover { background: var(--color-primary); color: var(--color-inverse); }
+.project-row-arrow svg { transition: transform .2s ease; }
+.project-row-arrow:hover svg, .project-row-arrow:focus-visible svg { transform: translate(2px, -2px); }
 .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
 .tag { padding: 4px 8px; background: var(--color-soft); border: 1px solid var(--color-line); border-radius: 4px; font: 500 11px/1.6 var(--font-mono); color: var(--color-muted); }
 .connect-sidebar { padding-top: 6px; }
@@ -241,7 +244,8 @@
   .portfolio-workspace { --workspace-top: 64px; --workspace-gutter: 30px; --profile-width: 180px; --connect-width: 160px; grid-template-columns: var(--profile-width) minmax(0, 1fr) var(--connect-width); gap: 30px; }
   h1 { font-size: 48px; }
   .profile-name { font-size: 20px; }
-  .project-row { grid-template-columns: 96px minmax(0, 1fr) 18px; gap: 15px; padding: 15px; min-height: 120px; }
+  .project-row { grid-template-columns: 96px minmax(0, 1fr); gap: 15px; padding: 15px; min-height: 120px; }
+  .project-row-arrow { grid-column: 2; justify-self: start; }
   .project-thumbnail { width: 96px; height: 80px; }
   .project-row h3 { font-size: 22px; }
 }
@@ -268,10 +272,14 @@
   .workspace-toolbar { margin-bottom: 22px; }
   h1 { font-size: 39px; line-height: 1.16; }
   h2 { font-size: 28px; }
+  .overview-heading { margin-bottom: 24px; }
+  .overview-heading h1 { font-size: 32px; }
+  .intro h2 { font-size: 24px; }
   .intro { padding-bottom: 28px; margin-bottom: 44px; }
   .intro-actions { margin-top: 24px; }
   .intro p, .page-heading p { font-size: 16px; }
-  .project-row { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 18px; }
+  .project-row { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 18px; }
+  .project-row-arrow { grid-column: 1; justify-self: stretch; }
   .project-thumbnail { display: none; }
   .project-row h3 { font-size: 22px; }
   .connect-sidebar { margin-top: 28px; padding-top: 23px; }

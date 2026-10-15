@@ -23,7 +23,9 @@ export default function ProjectRow({ project, compact = false }) {
           <ProjectLinks project={project} />
         </>}
       </div>
-      <Link className="project-row-arrow" to={href} aria-label={`Read ${project.title} case study`}><ArrowUpRight size={17} aria-hidden="true" /></Link>
+      <Link className="project-row-arrow" to={href} aria-label={`View project: ${project.title}`}>
+        <span>View project</span><ArrowUpRight size={18} aria-hidden="true" />
+      </Link>
     </article>
   )
 }
