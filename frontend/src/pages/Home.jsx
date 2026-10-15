@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <section className="intro" aria-labelledby="intro-title">
         <h1 id="intro-title">I build websites, web apps, and desktop software.</h1>
-        <p className="intro-lead">I'm Clifford, a software developer based in Cebu. My work includes a resort website, a clinic management system, and applications I build for my own use.</p>
+        <p className="intro-lead">I'm Clifford, a software developer based in Cebu. I build websites and applications for the web, mobile, and desktop.</p>
         <div className="intro-actions">
           <Link className="button button-primary" to="/projects">Explore my work <ArrowUpRight size={15} aria-hidden="true" /></Link>
           <Link className="button" to="/about">More about me</Link>

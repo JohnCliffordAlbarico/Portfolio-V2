@@ -9,7 +9,7 @@ const DEFAULT_IMAGE = `${SITE_URL}/social-preview.jpg`
 const pages = {
   '/': {
     title: 'John Clifford Albarico | Software Developer in Cebu',
-    description: 'John Clifford Albarico is a software developer in Cebu. See his resort website, clinic management software, and personal web and desktop projects.',
+    description: 'John Clifford Albarico is a software developer based in Cebu who creates websites, web applications, mobile apps, and desktop software.',
     type: 'ProfilePage',
   },
   '/about': {
