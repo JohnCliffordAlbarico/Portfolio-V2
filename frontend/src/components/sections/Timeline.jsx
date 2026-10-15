@@ -5,7 +5,7 @@ const events = [
     year: '2022 – 2023',
     title: 'Foundations in Programming',
     description:
-      'Started learning C programming at CTU Naga, building core logic and problem-solving skills. Later transitioned to Java, studying Data Structures and Algorithms under Mr. Anqui to strengthen algorithmic thinking.',
+      'Started with C at CTU Naga, then learned Java and Data Structures and Algorithms under Mr. Anqui.',
     commit: 'init: foundations',
     branch: 'C',
     icon: Code,
@@ -15,7 +15,7 @@ const events = [
     year: '2023 – 2024',
     title: 'Web Development & OOP Fundamentals',
     description:
-      'Explored web development with HTML, CSS, and JavaScript. Learned PHP and MySQL for database-driven applications, while studying Object-Oriented Programming with C# covering encapsulation, inheritance, and polymorphism.',
+      'Learned HTML, CSS, JavaScript, PHP, and MySQL, and studied object-oriented programming in C#.',
     commit: 'feat: web basics',
     branch: 'web',
     icon: Globe,
@@ -23,9 +23,9 @@ const events = [
   },
   {
     year: '2024 – 2025',
-    title: 'Modern Web Technologies & Cloud Tools',
+    title: 'React, authentication, and databases',
     description:
-      'Transitioned into component-based frontend development with React. Adopted Firebase and later Supabase for authentication and cloud databases, expanding into full-stack workflows and real-time application systems.',
+      'Built React interfaces and started using Firebase and Supabase for authentication and databases.',
     commit: 'feat: modern stack',
     branch: 'react',
     icon: Layers,
@@ -35,7 +35,7 @@ const events = [
     year: '2025 – 2026',
     title: 'Full-Stack Development & Deployment',
     description:
-      'Developed and deployed full-stack applications using React, Node.js, Express.js, and Supabase. Built cross-platform mobile apps with React Native. Gained real-world internship experience with deployment tools like Render, NGINX, AWS, and NSSM.',
+      'Built and deployed applications with React, Node.js, Express, and Supabase. Worked with React Native for mobile apps and used Render, NGINX, AWS, and NSSM during my internship.',
     commit: 'release: v1.0.0',
     branch: 'main',
     icon: Rocket,
@@ -47,7 +47,7 @@ export default function Timeline() {
   return (
     <section id="timeline" className="about-section" aria-labelledby="timeline-heading">
       <h2 id="timeline-heading">Technical timeline</h2>
-      <p>The key milestones in my development journey, from programming foundations to full-stack deployment.</p>
+      <p>What I studied and built from 2022 to 2026.</p>
       <div className="detail-list">{events.map(({ year, title, description, tags }) => <article key={title}><span className="metadata">{year}</span><h3>{title}</h3><p>{description}</p><div className="project-tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></article>)}</div>
     </section>
   )

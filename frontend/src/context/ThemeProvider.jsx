@@ -37,8 +37,8 @@ export default function ThemeProvider({ children }) {
     }
   }, [])
 
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light'
+  const selectTheme = (next) => {
+    if (next !== 'light' && next !== 'dark') return
     preference.current = next
     setTheme(next)
     try {
@@ -48,5 +48,7 @@ export default function ThemeProvider({ children }) {
     }
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  const toggleTheme = () => selectTheme(theme === 'light' ? 'dark' : 'light')
+
+  return <ThemeContext.Provider value={{ theme, setTheme: selectTheme, toggleTheme }}>{children}</ThemeContext.Provider>
 }

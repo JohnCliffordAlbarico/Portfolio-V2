@@ -41,7 +41,7 @@ export default function Projects() {
 
   return (
     <>
-      <header className="page-heading"><h1>Things I've built.</h1><p>Client work, personal projects, and a capstone. Explore the product, my role, and the implementation.</p></header>
+      <header className="page-heading"><h1>Things I've built.</h1><p>Websites and applications I've built for clients, school, and my own use.</p></header>
       <div className="search-field">
         <Search size={18} className="text-muted" aria-hidden="true" />
         <label className="sr-only" htmlFor="project-search">Search projects by name, description, or technology</label>

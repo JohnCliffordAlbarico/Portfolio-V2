@@ -7,14 +7,17 @@ export default function ProjectRow({ project, compact = false }) {
   const cover = getProjectImages(project)[0]
   const href = `/projects/${project.slug}`
   return (
-    <article className={`project-row${compact ? ' project-row-compact' : ''}`}>
+    <article className="project-row">
       <Link className="project-thumbnail" to={href} tabIndex={-1} aria-hidden="true">
-        {cover && <img src={cover.src} alt="" loading={compact ? 'eager' : 'lazy'} width="80" height="67" />}
+        {cover && <img src={cover.src} alt="" loading={compact ? 'eager' : 'lazy'} width="128" height="104" />}
       </Link>
       <div className="project-row-content">
         <h3><Link to={href}>{project.title}</Link></h3>
-        <div className="metadata">{project.platform} · {project.tags.slice(0, 2).join(' · ')}</div>
-        {!compact && <>
+        {compact ? <>
+          <p className="project-summary">{project.outcome}</p>
+          <div className="metadata">{project.platform} · {project.tags.slice(0, 3).join(' · ')}</div>
+        </> : <>
+          <div className="metadata">{project.platform} · {project.tags.slice(0, 2).join(' · ')}</div>
           <p>{project.outcome}</p>
           <div className="project-tags" aria-label="Technologies">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
           <ProjectLinks project={project} />

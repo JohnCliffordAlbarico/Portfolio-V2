@@ -9,22 +9,22 @@ const DEFAULT_IMAGE = `${SITE_URL}/social-preview.jpg`
 const pages = {
   '/': {
     title: 'John Clifford Albarico | Software Developer in Cebu',
-    description: 'John Clifford M. Albarico is a software developer based in Cebu, Philippines, building websites, web applications, mobile apps, and desktop systems.',
+    description: 'John Clifford Albarico is a software developer in Cebu. See his resort website, clinic management software, and personal web and desktop projects.',
     type: 'ProfilePage',
   },
   '/about': {
     title: 'About John Clifford Albarico | Software Developer',
-    description: 'Get to know John Clifford M. Albarico, a BSIT graduate and software developer in Cebu. Explore his skills, development journey, education, and awards.',
+    description: 'John Clifford Albarico is a BSIT graduate from CTU Naga in Cebu. Read about his internship, development skills, education, and awards.',
     type: 'AboutPage',
   },
   '/projects': {
     title: 'Software Development Projects | John Clifford Albarico',
-    description: 'Explore web, mobile, and desktop development work by John Clifford Albarico, including client projects, healthcare software, and personal applications.',
+    description: 'Client websites, clinic software, a print-shop practice project, and personal applications built by John Clifford Albarico.',
     type: 'CollectionPage',
   },
   '/contact': {
     title: 'Contact John Clifford Albarico | Software Developer',
-    description: 'Contact John Clifford Albarico, a software developer in Cebu, Philippines, about a website, web application, mobile or desktop project, or an opportunity.',
+    description: 'Get in touch with John Clifford Albarico, a software developer in Cebu, about a project or job opportunity.',
     type: 'ContactPage',
   },
 }

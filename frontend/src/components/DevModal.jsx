@@ -12,15 +12,11 @@ export default function DevModal({ images, currentIndex, onClose, onNavigate }) 
     const dialog = dialogRef.current
     const previouslyFocused = document.activeElement
     const previousOverflow = document.body.style.overflow
-    const center = document.querySelector('.center-column')
-    const previousCenterOverflow = center?.style.overflowY
     document.body.style.overflow = 'hidden'
-    if (center) center.style.overflowY = 'hidden'
     dialog.showModal()
     return () => {
       dialog.close()
       document.body.style.overflow = previousOverflow
-      if (center) center.style.overflowY = previousCenterOverflow
       previouslyFocused?.focus({ preventScroll: true })
     }
   }, [])

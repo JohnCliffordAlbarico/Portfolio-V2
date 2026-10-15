@@ -77,7 +77,7 @@ export default function Skills() {
   return (
     <section id="skills" className="about-section" aria-labelledby="skills-heading">
       <h2 id="skills-heading">Technical skills</h2>
-      <p>My core toolbox—the languages, frameworks, and platforms I use to build and ship applications.</p>
+      <p>Languages, frameworks, databases, and tools I've worked with.</p>
       <div className="skill-groups">{groups.map(({ title, items }) => <div key={title}><h3>{title}</h3><ul className="skill-list">{items.map(({ name, icon: Icon, level }) => <li key={name} title={`Self-assessed proficiency: ${level} / 5`}><Icon size={17} aria-hidden="true" />{name}</li>)}</ul></div>)}</div>
     </section>
   )

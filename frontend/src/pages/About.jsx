@@ -22,7 +22,7 @@ export default function About() {
 
   return (
     <>
-      <header className="page-heading"><h1>A little about me.</h1><p>My background, the tools I use, and the milestones along the way.</p></header>
+      <header className="page-heading"><h1>A little about me.</h1><p>My background, skills, education, and awards.</p></header>
       <nav className="section-tabs" aria-label="About sections">{sections.map(({ id, label }) => <Link key={id} to={id === 'profile' ? '/about' : `/about?section=${id}`} aria-current={section.id === id ? 'page' : undefined} preventScrollReset onClick={() => requestAnimationFrame(() => contentRef.current?.focus({ preventScroll: true }))}>{label}</Link>)}</nav>
       <div ref={contentRef} tabIndex={-1} className="about-content"><Section key={section.id} /></div>
     </>

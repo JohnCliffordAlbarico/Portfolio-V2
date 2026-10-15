@@ -9,7 +9,7 @@ const education = [
     path: 'CTU-Naga/BSIT/cum laude',
     year: '2022 – 2026',
     description:
-      'Comprehensive foundation in software development, system design, and technology management with consistent academic excellence throughout the program.',
+      'Studied software development, system design, and technology management. Graduated Cum Laude.',
   },
   {
     icon: School,
@@ -19,7 +19,7 @@ const education = [
     path: 'DAS-NHS/stem',
     year: '2020 – 2022',
     description:
-      'Strong foundation in mathematics, science, and analytical thinking essential for technology careers.',
+      'Studied mathematics and science in the STEM track before taking BSIT.',
   },
 ]
 
@@ -27,7 +27,7 @@ export default function Education() {
   return (
     <section id="education" className="about-section" aria-labelledby="education-heading">
       <h2 id="education-heading">Education</h2>
-      <p>Academic foundations built through technology education, culminating in a bachelor's degree with honors.</p>
+      <p>My college and senior high school education.</p>
       <div className="detail-list">{education.map(({ title, school, location, year, description }) => <article key={title}><span className="metadata">{year}</span><h3>{title}</h3><p className="font-medium text-foreground">{school}</p><p>{location}</p><p>{description}</p></article>)}</div>
     </section>
   )

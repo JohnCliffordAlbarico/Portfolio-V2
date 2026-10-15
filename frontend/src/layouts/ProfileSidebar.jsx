@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import profileImage from '../assets/profile.jpg'
+import ThemeSelector from '../components/ThemeSelector'
 
 export default function ProfileSidebar() {
   return (
@@ -9,6 +10,7 @@ export default function ProfileSidebar() {
         <div>
           <p className="profile-name">John Clifford<br />Albarico</p>
           <p className="profile-role">Software Developer</p>
+          <div className="profile-theme"><ThemeSelector /></div>
         </div>
       </div>
       <div className="profile-facts">

@@ -12,7 +12,7 @@ const items = [
     meta: 'technoweek/2025 · solo',
     title: 'Codathon Champion — Technolympics 2025',
     description:
-      'Named champion of the Codathon at Technolympics 2025, a flagship event of TechnoWeek at CTU Naga Extension Campus. Competed individually against fellow students, testing problem-solving, logic, and coding proficiency under pressure.',
+      'Won the individual Codathon competition at Technolympics 2025 during TechnoWeek at CTU Naga Extension Campus.',
   },
   {
     image: diplomaImage,
@@ -21,7 +21,7 @@ const items = [
     meta: 'ctunaga/2022-2026',
     title: 'Bachelor of Science in Information Technology — Cum Laude',
     description:
-      'Graduated with Cum Laude honors from the BSIT program for School Year 2025–2026, reflecting consistent academic excellence and a strong foundation in software development.',
+      'Graduated Cum Laude from the BSIT program at Cebu Technological University – Naga Extension Campus in school year 2025–2026.',
   },
 ]
 
@@ -38,8 +38,8 @@ export default function Awards() {
 
   return (
     <section id="awards" className="about-section" aria-labelledby="awards-heading">
-      <h2 id="awards-heading">Awards & certifications</h2>
-      <p>Academic honors and competitive achievements, with the evidence behind them.</p>
+      <h2 id="awards-heading">Awards and honors</h2>
+      <p>My coding competition award and graduation honors. Select an image to view it.</p>
       <div className="detail-list">{items.map(({ image, meta, title, description }, index) => <article className="evidence-item" key={title}><button type="button" onClick={() => setModalIndex(index)} aria-label={`Enlarge ${title}`}><img src={image} alt={title} loading="lazy" width="100" height="100" /></button><div><span className="metadata">{meta}</span><h3>{title}</h3><p>{description}</p></div></article>)}</div>
 
       {modalIndex !== null && (

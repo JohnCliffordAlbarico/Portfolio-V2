@@ -4,9 +4,9 @@ export const PROJECTS = [
     category: 'Client Projects',
     title: 'Tañon Strait Resort',
     outcome:
-      'A booking site for a real beach and pool resort on the Tañon Strait in Santander, Cebu — real rooms and rates up front, a gallery of the actual property, and an inquiry flow that replaces the phone-call booking ritual.',
+      'A resort website where guests can view rooms and rates, browse photos, and send booking inquiries.',
     description:
-      'Built for Tañon Strait Resort. Next.js App Router with a Tailwind design system built around the strait palette, scroll reveals driven by IntersectionObserver and hand-written CSS keyframes, and a server route handler behind the inquiry form. Hosted on Vercel with DNS on Cloudflare. No online checkout — the site takes dates and answers, the team confirms by hand.',
+      'I built the site for Tañon Strait Resort with Next.js and Tailwind CSS. It includes room listings, photo galleries, and an inquiry form that checks dates on the server. Staff confirm reservations and payments manually. The site runs on Vercel with Cloudflare DNS.',
     role: 'Software Developer',
     type: 'Paid client project',
     platform: 'Responsive website',
@@ -16,34 +16,34 @@ export const PROJECTS = [
     tags: ['Next.js', 'React', 'Tailwind CSS', 'Vercel'],
     brief: {
       problem:
-        'A small resort at the southern tip of Cebu with no online presence. Guests could not see the property, the rooms, or the rates before calling, and the questions they actually ask — how to get there, extra guests, cancellation, how payment works — had no written answer anywhere.',
+        'The resort needed a website showing the property, rooms, and rates before guests got in touch. Directions, extra-guest charges, cancellation terms, and payment instructions also needed to be available online.',
       approach:
-        'I built it as one fast page that does the work of a booking site without pretending to be one. Real rooms and rates instead of stock imagery, honest copy about what the resort is and is not, plain-language answers to the pre-booking questions, and an inquiry form that validates dates before anything is sent.',
+        'I put the room details, rates, photos, directions, and FAQs on one page. The inquiry form collects dates and contact details and checks that checkout comes after check-in. The resort team handles confirmation and payment.',
     },
     modules: [
       {
         title: 'Rooms & Rates',
-        text: 'Both room types with nightly rates, occupancy limits, breakfast inclusion and check-in window stated on the card instead of buried.',
+        text: 'Lists both room types with nightly rates, occupancy limits, breakfast details, and check-in times.',
       },
       {
         title: 'Inquiry Flow',
-        text: 'Dates, party size and contact details with a check-out-after-check-in guard, pending state, and a honeypot field to keep bots out.',
+        text: 'Collects dates, party size, and contact details. Checks the checkout date, shows when a submission is pending, and includes a honeypot field.',
       },
       {
         title: 'Gallery & Media',
-        text: 'Auto-advancing photo sequences of the real pool, grounds and shore that pause on hover, focus or touch so nobody loses the frame they were reading.',
+        text: 'Shows photos of the pool, grounds, and shore. The slideshow pauses on hover, keyboard focus, or touch.',
       },
       {
         title: 'Location & Directions',
-        text: 'Plus Code, coordinates and a maps link, because a resort at the end of Cebu is only useful if a guest can actually find it.',
+        text: 'Provides a Plus Code, coordinates, and a map link for directions to the resort.',
       },
       {
         title: 'FAQ & Payment Instructions',
-        text: 'Written answers to arrival, extra-guest pricing, private bookings and the cancellation ladder, plus manual bank-transfer steps written as a numbered sequence.',
+        text: 'Explains arrival times, extra-guest prices, private bookings, cancellations, and the steps for paying by bank transfer.',
       },
       {
         title: 'Motion Without a Library',
-        text: 'Scroll reveals, room transitions and marquees written as plain CSS keyframes against an IntersectionObserver, with reduced-motion support — the whole page animates without shipping an animation library.',
+        text: 'Uses IntersectionObserver and CSS keyframes for scroll reveals, room transitions, and marquees, with reduced-motion support and no animation library.',
       },
     ],
     stackGroups: [
@@ -68,8 +68,8 @@ export const PROJECTS = [
     ],
     results: [
       { value: '01', label: 'Live resort site on a custom domain' },
-      { value: '08', label: 'Sections covering the full guest journey' },
-      { value: '01', label: 'Inquiry path wired to a validated server route' },
+      { value: '08', label: 'Sections for rooms, photos, booking information, and directions' },
+      { value: '01', label: 'Inquiry form with server-side validation' },
     ],
     architecture: [
       'Next.js App Router',
@@ -105,9 +105,9 @@ export const PROJECTS = [
     category: 'Personal Projects',
     title: 'FlowIQ',
     outcome:
-      'An AI-assisted workspace for job applications — paste a job posting or a recruiter message and FlowIQ classifies it, scores requirements against your profile and resume, drafts a tailored reply, and sends only with your approval.',
+      'A web app that compares job postings with a résumé, drafts application emails, and waits for approval before sending.',
     description:
-      'Human-in-the-loop automation throughout: intake returns a pending row immediately while fetch, analysis, and ingestion proceed in a background queue with boot recovery. Every send records snapshots plus transport metadata.',
+      'I built the React interface and Express API for collecting job postings, comparing requirements with a résumé, and reviewing email drafts. Analysis runs in a background queue that recovers pending work after a restart. Each sent application keeps a record of the approved content and delivery details.',
     role: 'Sole developer',
     type: 'Personal project',
     platform: 'Web app',
@@ -117,9 +117,9 @@ export const PROJECTS = [
     tags: ['React', 'Express', 'Node.js', 'PostgreSQL', 'pgvector', 'Gemini'],
     brief: {
       problem:
-        'Job hunting means re-reading postings, comparing requirements against a resume, and writing custom replies from scratch. Doing that across dozens of roles is slow and easy to get wrong.',
+        'Applying for jobs involves reading postings, checking requirements against a résumé, and drafting replies. The app brings those steps and the sent messages into one place.',
       approach:
-        'I built one pipeline for it: classify the input and pick an intent, extract structured requirements, retrieve resume evidence with pgvector RAG, generate a draft with provenance, then hold for human approval before sending and recording the application.',
+        'I built an API that classifies each posting, extracts requirements, retrieves matching résumé excerpts with pgvector, and generates an editable draft. Sending requires approval, and the app records the result.',
     },
     modules: [
       {
@@ -128,15 +128,15 @@ export const PROJECTS = [
       },
       {
         title: 'Extraction Pipeline',
-        text: 'Structured data from JSON-LD and embedded page state, Readability fallback, honest handling of JS shells and login walls.',
+        text: 'Extracts job details from JSON-LD and embedded page data, with Readability as a fallback. Reports when a page needs JavaScript or a login.',
       },
       {
         title: 'Requirement Fit Analysis',
-        text: 'Typed requirements, weighted fit score, gaps, and per-requirement evidence drawn from the resume via RAG.',
+        text: 'Compares job requirements with retrieved résumé excerpts and shows a weighted fit score, gaps, and the evidence for each match.',
       },
       {
         title: 'Drafting with Provenance',
-        text: 'Cover letters and replies generated against retrieved resume excerpts, previewed and editable before anything sends.',
+        text: 'Generates cover letters and replies using retrieved résumé excerpts. Drafts can be reviewed and edited before sending.',
       },
       {
         title: 'Send & Application Ledger',
@@ -206,7 +206,7 @@ export const PROJECTS = [
         src: '/flowiq/flowiq-register.png',
         title: 'Create Account',
         description:
-          'One-minute signup with full name, email verification code, and Google sign-in to start building momentum.',
+          'Account creation with a full name, email verification code, or Google sign-in.',
         tags: ['React', 'Better Auth'],
         status: 'live',
       },
@@ -217,9 +217,9 @@ export const PROJECTS = [
     category: 'Client Projects',
     title: 'Bacaltos Healthcare System',
     outcome:
-      'A desktop-first clinic management system designed around the day-to-day workflow of a real healthcare operation — patient management, records, prescriptions, inventory and cloud-backed data in one workspace.',
+      'A desktop application for managing patient records, prescriptions, and inventory, with local storage and cloud backups.',
     description:
-      'Built for Bacaltos Medical Clinic. An Electron controller runs the backend services locally via system tray, a React dashboard handles daily clinic work, and Turso + Cloudflare R2 keep an offsite backup with sync history.',
+      'I built this for Bacaltos Medical Clinic. An Electron tray app starts the local backend, and a React dashboard handles clinic records and daily tasks. SQLite stores data locally; Turso and Cloudflare R2 provide database and image backups with sync history.',
     role: 'Software Developer',
     type: 'Paid client project',
     platform: 'Windows desktop + web UI',
@@ -229,34 +229,34 @@ export const PROJECTS = [
     tags: ['React', 'Express', 'Electron', 'SQLite', 'Turso', 'Cloudflare R2'],
     brief: {
       problem:
-        'Clinic workflows involve patient information, records, certificates, prescriptions, stock, and printed documents. Keeping those tasks consistent across separate processes creates unnecessary manual work and makes it harder to maintain a reliable history.',
+        'The clinic handles patient information, medical records, certificates, prescriptions, inventory, and printed documents. Managing these in separate tools makes it harder to keep patient histories and stock records together.',
       approach:
-        'I designed the application as one operational system: a desktop controller for the local environment, a React interface for daily use, structured APIs for business logic, and cloud-backed persistence for resilience beyond a single machine.',
+        'I used Electron to start the local services, React for the clinic interface, and Express for the API. SQLite keeps a local database, with Turso and Cloudflare R2 for offsite backups.',
     },
     modules: [
       {
         title: 'Patient Management',
-        text: 'Centralized patient profiles designed for quick access during routine clinic interactions.',
+        text: 'Stores patient profiles so staff can find their details and related records.',
       },
       {
         title: 'Medical Records',
-        text: 'Structured records keep patient history connected to the people and encounters they belong to.',
+        text: 'Keeps medical records linked to each patient and their clinic visits.',
       },
       {
         title: 'Certificates',
-        text: 'Digital document generation and printing remove repetitive manual formatting.',
+        text: 'Generates and prints medical certificates.',
       },
       {
         title: 'Prescriptions',
-        text: 'Prescription workflows live alongside the patient context instead of in a separate process.',
+        text: 'Creates prescriptions linked to the patient record.',
       },
       {
         title: 'Inventory',
-        text: 'Stock information is integrated into the same operational environment used by the clinic.',
+        text: 'Tracks medicine stock in the clinic dashboard.',
       },
       {
         title: 'Cloud Backup',
-        text: 'Turso provides cloud-backed database storage, while Cloudflare R2 handles image backup beyond the local installation.',
+        text: 'Backs up the database to Turso and images to Cloudflare R2, with manual sync, automatic sync, and sync history.',
       },
     ],
     stackGroups: [
@@ -282,8 +282,8 @@ export const PROJECTS = [
     ],
     results: [
       { value: '01', label: 'Desktop-first application' },
-      { value: '06', label: 'Core clinic workflows brought together' },
-      { value: '02', label: 'Cloud services supporting data resilience' },
+      { value: '06', label: 'Clinic modules' },
+      { value: '02', label: 'Cloud services for database and image backups' },
     ],
     architecture: ['Electron controller', 'React dashboard', 'Express API', 'SQLite local', 'Turso + R2 backup'],
     links: { live: null, github: null },
@@ -306,7 +306,7 @@ export const PROJECTS = [
         src: '/bacaltosproject/login_page.png',
         title: 'Login Page',
         description:
-          'Clean login interface for clinic staff with username and password authentication.',
+          'Clinic staff sign in with a username and password.',
         tags: ['React', 'Auth'],
         status: 'desktop-app · offline',
       },
@@ -333,9 +333,9 @@ export const PROJECTS = [
     category: 'Personal Projects',
     title: 'Printing Management System',
     outcome:
-      'A full-stack print-shop system: an Electron controller for the local environment plus a React admin dashboard for transactions, customers, payments, users and audit logs.',
+      'A practice project for tracking print-shop orders, customers, payments, and staff activity through a desktop controller and web dashboard.',
     description:
-      'Electron tray app runs and watches the backend, Express serves the API, and a React dashboard with sidebar navigation covers daily shop operations with summary cards and revenue analytics.',
+      'I built an Electron tray app to run and monitor the Express backend, plus a React dashboard for transactions, customers, payments, users, and audit logs. The dashboard also shows transaction summaries and revenue reports.',
     role: 'Sole developer',
     type: 'Personal project — practice build',
     platform: 'Windows desktop + web UI',
@@ -345,9 +345,9 @@ export const PROJECTS = [
     tags: ['Electron', 'React', 'Express', 'Node.js'],
     brief: {
       problem:
-        'A print shop tracks transactions, customers and payments across disconnected notes and files. Without one place for the numbers, daily totals and outstanding payments take longer than they should.',
+        'This was a practice project for managing print-shop transactions, customer records, and payments. I used it to work on a local backend, a desktop controller, and a web dashboard.',
       approach:
-        'I built one system for it: a desktop controller that owns the local backend lifecycle, and an admin dashboard where transactions, customers, payments, users and audit logs live side by side with revenue summaries.',
+        'I built an Electron tray controller for the local backend and a React dashboard for the shop records. The dashboard includes revenue summaries and an audit log.',
     },
     modules: [
       {
@@ -356,7 +356,7 @@ export const PROJECTS = [
       },
       {
         title: 'Transactions',
-        text: 'Order and payment tracking with history instead of scattered paperwork.',
+        text: 'Tracks orders, payments, and transaction history.',
       },
       {
         title: 'Customers & Users',
@@ -430,9 +430,9 @@ export const PROJECTS = [
     category: 'Personal Projects',
     title: 'Yuuko Workspace',
     outcome:
-      'My own workspace for tracking what I actually get done — tasks with timers, duration breakdowns and analytics views to review productivity week over week.',
+      'My personal task tracker, with timers and daily and weekly summaries of how I spend my time.',
     description:
-      'Designed and coded on OJT weekends. Tasks carry durations, and analytics break down where the time went so progress is visible instead of guessed.',
+      'I designed and built this during weekends while I was on internship. Tasks have timers, and the reports group their durations so I can review what I worked on and how long it took.',
     role: 'Personal build — design + code',
     type: 'Personal project',
     platform: 'Web app',
@@ -442,22 +442,22 @@ export const PROJECTS = [
     tags: ['React', 'Node.js', 'Supabase'],
     brief: {
       problem:
-        'Weekend building time disappears without a trace. I wanted a record of what I worked on and how long it took, not just a todo list that resets.',
+        'I wanted a record of the tasks I worked on during weekends and how long they took.',
       approach:
-        'I built a small workspace where every task can carry time, and analytics views roll those durations up so a week of work reads back as a summary.',
+        'I added timers to tasks and grouped the recorded time into daily and weekly reports.',
     },
     modules: [
       {
         title: 'Task Tracking',
-        text: 'Tasks with per-task timers so work sessions stay attached to the thing they belong to.',
+        text: 'Adds a timer to each task and saves its recorded work sessions.',
       },
       {
         title: 'Duration Breakdowns',
-        text: 'Time rolled up over days and weeks instead of buried in individual entries.',
+        text: 'Groups recorded task time by day and week.',
       },
       {
         title: 'Productivity Analytics',
-        text: 'Views that show where the hours actually went, for planning the next week.',
+        text: 'Shows time spent on tasks so I can review my week and plan the next one.',
       },
     ],
     stackGroups: [
@@ -478,7 +478,7 @@ export const PROJECTS = [
       },
     ],
     results: [
-      { value: '01', label: 'Personal workspace, dogfooded weekly' },
+      { value: '01', label: 'Personal task tracker' },
       { value: '03', label: 'Tracking, breakdowns, analytics' },
       { value: '01', label: 'Live deployment on Render' },
     ],
@@ -496,9 +496,9 @@ export const PROJECTS = [
     category: 'Capstone Project',
     title: 'Bacaltos Clinic',
     outcome:
-      'The capstone platform version of the clinic work — role-based access, patient records, appointment scheduling and a disease-forecasting module, deployed live for demo and defense.',
+      'My capstone project: a clinic web app with patient records, appointment scheduling, staff roles, and disease forecasting.',
     description:
-      'Full-stack capstone build on React + Express + Supabase. Same clinic domain as the desktop client system, packaged as a hosted web platform with a forecasting module for the defense.',
+      'I worked on this React, Express, and Supabase application for my capstone. It includes patient records, appointments, staff access controls, and a disease-forecasting module. The hosted version was used for the project demonstration and defense.',
     role: 'Capstone developer',
     type: 'School capstone',
     platform: 'Web app',
@@ -508,22 +508,22 @@ export const PROJECTS = [
     tags: ['React', 'Express', 'Supabase', 'Node.js'],
     brief: {
       problem:
-        'The capstone needed to show a complete system, not a slice: real roles, real records, scheduling, and one analytical module that goes beyond CRUD.',
+        'The capstone needed patient records, appointment scheduling, staff roles, and a disease-forecasting module in one web application.',
       approach:
-        'I built the clinic domain as a hosted platform with role-based access at the core, records and scheduling on top, and disease forecasting as the analytical layer for the defense.',
+        'I used React for the interface, Express for the API, and Supabase for the database and authentication. Staff roles control access to records and appointments.',
     },
     modules: [
       {
         title: 'Role-Based Access',
-        text: 'Staff see what their role allows — no shared logins, no leaked screens.',
+        text: 'Limits access to pages and actions based on the staff member’s assigned role.',
       },
       {
         title: 'Records & Scheduling',
-        text: 'Patient records connected to appointments instead of floating lists.',
+        text: 'Links patient records with appointment scheduling.',
       },
       {
         title: 'Disease Forecasting',
-        text: 'Analytical module that surfaces trends for the capstone defense.',
+        text: 'Includes disease forecasting as part of the capstone demonstration.',
       },
     ],
     stackGroups: [
