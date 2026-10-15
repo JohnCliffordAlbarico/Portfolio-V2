@@ -1,149 +1,63 @@
-import { useState } from 'react'
-import { Send, Mail, CheckCircle, AlertCircle } from 'lucide-react'
-import ChromeBar from '../components/ChromeBar'
+import { useEffect, useRef, useState } from 'react'
+import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 export default function Contact() {
-  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [status, setStatus] = useState('idle')
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const requestRef = useRef(null)
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+  useEffect(() => () => requestRef.current?.abort(), [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleChange = (event) => setFormData(previous => ({ ...previous, [event.target.name]: event.target.value }))
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    if (requestRef.current || new FormData(event.currentTarget).get('botcheck')) return
+    const controller = new AbortController()
+    requestRef.current = controller
     setStatus('sending')
-
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
-          access_key: 'd7fcfd68-db84-4f8a-950a-271c9de13a54',
-          subject: `New message from ${formData.name}`,
-          from_name: formData.name,
-          ...formData,
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'd7fcfd68-db84-4f8a-950a-271c9de13a54',
+          subject: `New message from ${formData.name.trim()}`,
+          from_name: formData.name.trim(),
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
         }),
       })
-
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
-      } else {
-        setStatus('error')
-      }
+      const data = await response.json()
+      if (controller.signal.aborted) return
+      if (!response.ok || !data.success) throw new Error('Message was not accepted')
+      setStatus('success')
+      setFormData({ name: '', email: '', message: '' })
     } catch {
-      setStatus('error')
+      if (!controller.signal.aborted) setStatus('error')
+    } finally {
+      if (requestRef.current === controller) requestRef.current = null
     }
   }
 
   return (
-    <div className="overflow-x-clip px-4 py-16 sm:px-6">
-      <div className="mx-auto max-w-2xl">
-        <p className="mb-2 font-mono text-sm text-primary">
-          <span className="text-muted">//</span> contact
-        </p>
-        <h1 className="mb-4 text-3xl font-bold tracking-tight">Contact</h1>
-        <p className="mb-12 text-muted">
-          Have a question or want to work together? Fill out the form below.
-        </p>
-
-        {status === 'success' ? (
-          <div className="flex flex-col items-center gap-4 overflow-hidden rounded-xl border border-white/10 bg-surface">
-            <ChromeBar filename="message.txt" />
-            <div className="flex flex-col items-center gap-4 p-10 text-center">
-              <CheckCircle size={40} className="text-green-500" />
-              <p className="text-sm text-foreground">Message sent successfully!</p>
-              <button
-                type="button"
-                onClick={() => setStatus('idle')}
-                className="mt-2 text-sm text-primary transition-colors hover:text-accent"
-              >
-                Send another message
-              </button>
-            </div>
+    <>
+      <header className="page-heading"><h1>Have something in mind?</h1><p>A question, a project, or an opportunity—I'd love to hear about it.</p></header>
+      {status === 'success' ? <section className="form-success" role="status"><CheckCircle size={32} aria-hidden="true" /><h2>Message sent.</h2><p>Thanks for reaching out. I'll get back to you using the email you provided.</p><button className="button" type="button" onClick={() => setStatus('idle')}>Send another message</button></section> :
+        <form className="contact-form" method="post" onSubmit={handleSubmit} aria-busy={status === 'sending'}>
+          <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} aria-hidden="true" autoComplete="off" />
+          <div className="form-row">
+            <div className="form-field"><label htmlFor="name">Name</label><input id="name" name="name" required maxLength={100} autoComplete="name" placeholder="Your name" value={formData.name} onChange={handleChange} disabled={status === 'sending'} /></div>
+            <div className="form-field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required maxLength={254} autoComplete="email" placeholder="you@example.com" value={formData.email} onChange={handleChange} disabled={status === 'sending'} /></div>
           </div>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-5 overflow-hidden rounded-xl border border-white/10 bg-surface"
-          >
-            <ChromeBar filename="contact.md" />
-            <div className="flex flex-col gap-5 p-5 sm:p-8">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="mb-1.5 block text-sm text-muted">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border border-white/10 bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-1.5 block text-sm text-muted">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border border-white/10 bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="mb-1.5 block text-sm text-muted">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full resize-none rounded-lg border border-white/10 bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              {status === 'error' && (
-                <div className="flex items-center gap-2 text-sm text-red-400">
-                  <AlertCircle size={16} />
-                  Something went wrong. Please try again.
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {status === 'sending' ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    <Send size={16} />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
-        )}
-      </div>
-    </div>
+          <div className="form-field"><label htmlFor="message">Message</label><textarea id="message" name="message" required maxLength={5000} rows={6} placeholder="Tell me a little about what you have in mind…" value={formData.message} onChange={handleChange} disabled={status === 'sending'} /></div>
+          {status === 'error' && <p className="form-message" role="alert"><AlertCircle size={18} aria-hidden="true" />Your message couldn't be sent. Please try again, or reach me by email below.</p>}
+          <div><button className="button button-primary" type="submit" disabled={status === 'sending'}><Send size={15} aria-hidden="true" />{status === 'sending' ? 'Sending…' : 'Send message'}</button></div>
+          <span className="sr-only" role="status">{status === 'sending' ? 'Sending your message.' : ''}</span>
+        </form>}
+      <p className="contact-alternative">Prefer email? <a href="mailto:cliffordalbarico20@gmail.com">cliffordalbarico20@gmail.com</a></p>
+    </>
   )
 }

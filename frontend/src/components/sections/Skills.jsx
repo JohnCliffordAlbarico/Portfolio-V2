@@ -1,5 +1,3 @@
-import ScrollReveal from '../ScrollReveal'
-import SectionHeading from '../SectionHeading'
 import { Zap, ServerCog } from 'lucide-react'
 import { 
   SiJavascript, 
@@ -7,7 +5,6 @@ import {
   SiPython, 
   SiOpenjdk,
   SiHtml5,
-  SiCss3,
   SiReact,
   SiNodedotjs,
   SiExpress,
@@ -76,69 +73,12 @@ const groups = [
   },
 ]
 
-function ProficiencyBar({ level }) {
-  return (
-    <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((i) => {
-        const filled = i <= Math.floor(level)
-        const half = !filled && i === Math.ceil(level) && level % 1 !== 0
-        return (
-          <div
-            key={i}
-            className="h-1.5 w-5 rounded-full bg-white/10"
-          >
-            {(filled || half) && (
-              <div
-                className={`h-full rounded-full bg-primary ${half ? 'w-[50%]' : 'w-full'}`}
-              />
-            )}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto w-full min-w-0 max-w-6xl">
-        <SectionHeading
-          eyebrow="dependencies"
-          title="Technical Skills"
-          description="My core toolbox — the languages, frameworks, and platforms I use to build and ship applications."
-        />
-
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {groups.map(({ title, items }, i) => (
-            <ScrollReveal key={title} delay={i * 100} distance={36}>
-              <div>
-                <h3 className="mb-4 font-mono text-sm text-primary">
-                  <span className="text-muted">&quot;</span>
-                  {title.toLowerCase().replace(/ & /g, '/')}
-                  <span className="text-muted">&quot;</span>
-                </h3>
-                <ul className="space-y-2">
-                  {items.map(({ name, icon: Icon, level }) => (
-                    <li
-                      key={name}
-                      className="flex min-w-0 items-center justify-between gap-2 rounded-md border border-white/5 bg-background px-3 py-2 font-mono text-sm text-muted transition-colors hover:border-primary/20 hover:text-foreground"
-                    >
-                      <div className="flex min-w-0 items-center gap-2.5">
-                        <span className="shrink-0 text-muted/50">&quot;</span>
-                        <Icon size={16} className="shrink-0" />
-                        <span className="truncate">{name}</span>
-                        <span className="shrink-0 text-muted/50">&quot;</span>
-                      </div>
-                      <ProficiencyBar level={level} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
+    <section id="skills" className="about-section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Technical skills</h2>
+      <p>My core toolbox—the languages, frameworks, and platforms I use to build and ship applications.</p>
+      <div className="skill-groups">{groups.map(({ title, items }) => <div key={title}><h3>{title}</h3><ul className="skill-list">{items.map(({ name, icon: Icon, level }) => <li key={name} title={`Self-assessed proficiency: ${level} / 5`}><Icon size={17} aria-hidden="true" />{name}</li>)}</ul></div>)}</div>
     </section>
   )
 }

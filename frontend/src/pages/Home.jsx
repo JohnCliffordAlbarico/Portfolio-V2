@@ -1,55 +1,27 @@
-import ScrollReveal from '../components/ScrollReveal'
-import Hero from '../components/sections/Hero'
-import About from '../components/sections/About'
-import FeaturedProjects from '../components/sections/FeaturedProjects'
-import Timeline from '../components/sections/Timeline'
-import Skills from '../components/sections/Skills'
-import Education from '../components/sections/Education'
-import Awards from '../components/sections/Awards'
-import ContactSection from '../components/sections/ContactSection'
+import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import ProjectRow from '../components/ProjectRow'
+import { PROJECTS } from '../constants/projects'
+
+const selected = ['tanon-strait-resort', 'bacaltos-healthcare-system']
+  .map(slug => PROJECTS.find(project => project.slug === slug))
+  .filter(Boolean)
 
 export default function Home() {
   return (
     <>
-      <ScrollReveal immediate>
-        <Hero />
-      </ScrollReveal>
-
-      <div className="section-divider">
-        <ScrollReveal distance={56}>
-          <About />
-        </ScrollReveal>
-      </div>
-
-      <ScrollReveal distance={56}>
-        <Skills />
-      </ScrollReveal>
-
-      <div className="section-divider">
-        <ScrollReveal distance={56}>
-          <FeaturedProjects />
-        </ScrollReveal>
-      </div>
-
-      <ScrollReveal distance={56}>
-        <Timeline />
-      </ScrollReveal>
-
-      <div className="section-divider">
-        <ScrollReveal distance={56}>
-          <Education />
-        </ScrollReveal>
-      </div>
-
-      <ScrollReveal distance={56}>
-        <Awards />
-      </ScrollReveal>
-
-      <div className="section-divider">
-        <ScrollReveal distance={56}>
-          <ContactSection />
-        </ScrollReveal>
-      </div>
+      <section className="intro" aria-labelledby="intro-title">
+        <h1 id="intro-title">Building digital experiences that work.</h1>
+        <p>I build websites and web applications that solve real problems, alongside mobile and desktop software.</p>
+      </section>
+      <section aria-labelledby="selected-work-title">
+        <div className="section-heading">
+          <h2 id="selected-work-title">Selected work</h2>
+          <Link className="text-link" to="/projects">All projects <ArrowUpRight size={14} aria-hidden="true" /></Link>
+        </div>
+        <div className="project-list">{selected.map(project => <ProjectRow key={project.slug} project={project} compact />)}</div>
+      </section>
+      <p className="overview-note">From a first interface to a working system. <Link to="/about">More about what I do.</Link></p>
     </>
   )
 }

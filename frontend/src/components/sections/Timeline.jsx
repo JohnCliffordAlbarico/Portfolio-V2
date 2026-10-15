@@ -1,6 +1,4 @@
 import { Code, Globe, Layers, Rocket } from 'lucide-react'
-import ScrollReveal from '../ScrollReveal'
-import SectionHeading from '../SectionHeading'
 
 const events = [
   {
@@ -47,49 +45,10 @@ const events = [
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="git log"
-          title="Technical Timeline"
-          description="A look back at the key milestones in my development journey — commit by commit."
-        />
-
-        <p className="mb-10 font-mono text-sm text-muted">
-          <span className="text-primary">$</span> git log --oneline --decorate
-        </p>
-
-        <div className="relative space-y-10 pl-10 before:absolute before:bottom-0 before:left-[11px] before:top-0 before:w-0.5 before:bg-gradient-to-b before:from-primary before:via-primary/50 before:to-transparent">
-          {events.map(({ year, title, description, commit, branch, icon: Icon, tags }, i) => (
-            <ScrollReveal key={i} delay={i * 100} distance={36}>
-              <div className="relative">
-                <span className="absolute -left-10 top-1.5 flex size-[23px] items-center justify-center rounded-full border-2 border-primary bg-background">
-                  <Icon size={11} className="text-primary" />
-                </span>
-                <span className="mb-1 block font-mono text-xs text-muted">
-                  commit <span className="text-foreground">{commit}</span>
-                  <span className="mx-2 text-muted/40">·</span>
-                  <span className="text-primary">{year}</span>
-                </span>
-                <h3 className="mb-1 font-medium">{title}</h3>
-                <p className="max-w-lg text-sm text-muted leading-relaxed">
-                  {description}
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {tags.map((tag) => (
-                    <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 font-mono text-xs text-muted">
-                      {tag}
-                    </span>
-                  ))}
-                  <span className="rounded-md bg-primary/10 px-2 py-0.5 font-mono text-xs text-primary">
-                    branch: {branch}
-                  </span>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
+    <section id="timeline" className="about-section" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">Technical timeline</h2>
+      <p>The key milestones in my development journey, from programming foundations to full-stack deployment.</p>
+      <div className="detail-list">{events.map(({ year, title, description, tags }) => <article key={title}><span className="metadata">{year}</span><h3>{title}</h3><p>{description}</p><div className="project-tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></article>)}</div>
     </section>
   )
 }

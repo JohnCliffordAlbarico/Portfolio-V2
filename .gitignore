@@ -43,6 +43,7 @@ docs/
 Thumbs.db
 
 # Temporary Files
+.superpowers/
 tmp/
 temp/
 *.tmp
@@ -68,3 +69,12 @@ ios/Pods/
 *.db
 *.sqlite
 *.sqlite3
+
+# Keep the repository scoped to the application and this ignore configuration.
+# This also excludes local docs and tool workspaces at the repository root.
+/*
+!/.gitignore
+!/frontend/
+
+# Markdown documentation belongs in the ignored root doc/ folder.
+/frontend/**/*.md

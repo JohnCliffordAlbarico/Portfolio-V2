@@ -1,6 +1,4 @@
-import { GraduationCap, School, MapPin } from 'lucide-react'
-import ScrollReveal from '../ScrollReveal'
-import SectionHeading from '../SectionHeading'
+import { GraduationCap, School } from 'lucide-react'
 
 const education = [
   {
@@ -27,45 +25,10 @@ const education = [
 
 export default function Education() {
   return (
-    <section id="education" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto w-full min-w-0 max-w-6xl">
-        <h2 className="mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-          Education
-        </h2>
-        <p className="mb-12 max-w-2xl text-muted leading-relaxed">
-          Academic foundation built through comprehensive technology education, culminating in a Bachelor's degree with honors.
-        </p>
-
-        <div className="grid gap-8 md:grid-cols-2">
-          {education.map(({ icon: Icon, title, school, location, path, year, description }, i) => (
-            <ScrollReveal key={title} delay={i * 150} distance={44}>
-              <article className="flex gap-4 rounded-xl border border-white/5 bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.15)]">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-surface">
-                  <Icon size={22} className="text-primary" />
-                </div>
-                <div className="min-w-0 flex-1 space-y-2">
-                  <p className="font-mono text-xs text-muted">
-                    <span className="text-primary">~/</span>
-                    {path}
-                  </p>
-                  <h3 className="break-words font-medium leading-snug">{title}</h3>
-                  <p className="break-words text-sm font-medium text-foreground">{school}</p>
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={12} />
-                      {location}
-                    </span>
-                    <span className="rounded-md border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-primary">
-                      {year}
-                    </span>
-                  </div>
-                  <p className="text-sm text-muted leading-relaxed">{description}</p>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
+    <section id="education" className="about-section" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <p>Academic foundations built through technology education, culminating in a bachelor's degree with honors.</p>
+      <div className="detail-list">{education.map(({ title, school, location, year, description }) => <article key={title}><span className="metadata">{year}</span><h3>{title}</h3><p className="font-medium text-foreground">{school}</p><p>{location}</p><p>{description}</p></article>)}</div>
     </section>
   )
 }

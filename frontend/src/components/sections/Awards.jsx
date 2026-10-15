@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { Award, GraduationCap } from 'lucide-react'
 import awardImage from '../../assets/award.jpg'
 import diplomaImage from '../../assets/diploma.jpg'
-import ScrollReveal from '../ScrollReveal'
-import SectionHeading from '../SectionHeading'
 import ImageModal from '../DevModal'
 
 const items = [
@@ -39,49 +37,10 @@ export default function Awards() {
   }))
 
   return (
-    <section id="awards" className="min-h-[80vh] flex items-center overflow-x-clip px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto w-full min-w-0 max-w-6xl">
-        <SectionHeading
-          eyebrow="achievements"
-          title="Awards & Certifications"
-          description="Highlights from academic honors and competitive achievements — recognition earned through consistent effort and strong performance."
-        />
-
-        <div className="grid gap-8 md:grid-cols-2">
-          {items.map(({ image, icon: Icon, badge, meta, title, description }, i) => (
-            <ScrollReveal key={title} delay={i * 150} distance={44}>
-              <article className="flex gap-4 overflow-hidden rounded-xl border border-white/5 bg-background transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_8px_30px_-8px_rgba(220,38,38,0.15)]">
-                <button
-                  type="button"
-                  onClick={() => setModalIndex(i)}
-                  className="size-28 shrink-0 overflow-hidden bg-surface sm:size-32"
-                >
-                  <img
-                    src={image}
-                    alt={title}
-                    className="size-full object-cover object-center transition-transform duration-300 hover:scale-105"
-                  />
-                </button>
-                <div className="flex min-w-0 flex-1 flex-col justify-center space-y-2 py-4 pr-4">
-                  <p className="break-words font-mono text-xs text-primary">
-                    <span className="text-muted">badge:</span> {badge}
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-surface">
-                      <Icon size={14} className="text-primary" />
-                    </div>
-                    <h3 className="break-words text-sm font-medium leading-snug">{title}</h3>
-                  </div>
-                  <p className="break-words font-mono text-[10px] uppercase tracking-wider text-muted">
-                    <span className="text-muted/50">achv:</span> {meta}
-                  </p>
-                  <p className="break-words text-xs text-muted leading-relaxed">{description}</p>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
+    <section id="awards" className="about-section" aria-labelledby="awards-heading">
+      <h2 id="awards-heading">Awards & certifications</h2>
+      <p>Academic honors and competitive achievements, with the evidence behind them.</p>
+      <div className="detail-list">{items.map(({ image, meta, title, description }, index) => <article className="evidence-item" key={title}><button type="button" onClick={() => setModalIndex(index)} aria-label={`Enlarge ${title}`}><img src={image} alt={title} loading="lazy" width="100" height="100" /></button><div><span className="metadata">{meta}</span><h3>{title}</h3><p>{description}</p></div></article>)}</div>
 
       {modalIndex !== null && (
         <ImageModal

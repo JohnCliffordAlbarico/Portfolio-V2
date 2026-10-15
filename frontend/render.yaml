@@ -1,0 +1,53 @@
+# Render Blueprint. For a dashboard-managed site, apply the equivalent settings
+# from doc/DEPLOYMENT.md; adding this file alone does not change that site.
+# When creating a Blueprint, set Blueprint Path to frontend/render.yaml.
+services:
+  - type: web
+    name: john-clifford-albarico-portfolio
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    domains:
+      - johncliffordalbarico.site
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+    headers:
+      - path: /favicon.ico
+        name: Cache-Control
+        value: public, max-age=86400, must-revalidate
+      - path: /favicon.png
+        name: Cache-Control
+        value: public, max-age=86400, must-revalidate
+      - path: /apple-touch-icon.png
+        name: Cache-Control
+        value: public, max-age=86400, must-revalidate
+    routes:
+      - type: rewrite
+        source: /about
+        destination: /about/index.html
+      - type: rewrite
+        source: /projects
+        destination: /projects/index.html
+      - type: rewrite
+        source: /contact
+        destination: /contact/index.html
+      - type: rewrite
+        source: /projects/tanon-strait-resort
+        destination: /projects/tanon-strait-resort/index.html
+      - type: rewrite
+        source: /projects/flowiq
+        destination: /projects/flowiq/index.html
+      - type: rewrite
+        source: /projects/bacaltos-healthcare-system
+        destination: /projects/bacaltos-healthcare-system/index.html
+      - type: rewrite
+        source: /projects/printing-management-system
+        destination: /projects/printing-management-system/index.html
+      - type: rewrite
+        source: /projects/yuuko-workspace
+        destination: /projects/yuuko-workspace/index.html
+      - type: rewrite
+        source: /projects/bacaltos-clinic
+        destination: /projects/bacaltos-clinic/index.html
