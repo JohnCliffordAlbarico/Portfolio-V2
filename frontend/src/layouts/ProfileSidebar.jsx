@@ -19,7 +19,7 @@ export default function ProfileSidebar() {
         <p className="profile-stack">React · Next.js · Node.js<br />Electron · React Native</p>
       </div>
       <a className="resume-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-        View résumé <ArrowUpRight size={15} aria-hidden="true" />
+        View resume <ArrowUpRight size={15} aria-hidden="true" />
       </a>
     </aside>
   )

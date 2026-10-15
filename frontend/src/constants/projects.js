@@ -105,9 +105,9 @@ export const PROJECTS = [
     category: 'Personal Projects',
     title: 'FlowIQ',
     outcome:
-      'A web app that compares job postings with a résumé, drafts application emails, and waits for approval before sending.',
+      'A web app that compares job postings with a resume, drafts application emails, and waits for approval before sending.',
     description:
-      'I built the React interface and Express API for collecting job postings, comparing requirements with a résumé, and reviewing email drafts. Analysis runs in a background queue that recovers pending work after a restart. Each sent application keeps a record of the approved content and delivery details.',
+      'I built the React interface and Express API for collecting job postings, comparing requirements with a resume, and reviewing email drafts. Analysis runs in a background queue that recovers pending work after a restart. Each sent application keeps a record of the approved content and delivery details.',
     role: 'Sole developer',
     type: 'Personal project',
     platform: 'Web app',
@@ -117,9 +117,9 @@ export const PROJECTS = [
     tags: ['React', 'Express', 'Node.js', 'PostgreSQL', 'pgvector', 'Gemini'],
     brief: {
       problem:
-        'Applying for jobs involves reading postings, checking requirements against a résumé, and drafting replies. The app brings those steps and the sent messages into one place.',
+        'Applying for jobs involves reading postings, checking requirements against a resume, and drafting replies. The app brings those steps and the sent messages into one place.',
       approach:
-        'I built an API that classifies each posting, extracts requirements, retrieves matching résumé excerpts with pgvector, and generates an editable draft. Sending requires approval, and the app records the result.',
+        'I built an API that classifies each posting, extracts requirements, retrieves matching resume excerpts with pgvector, and generates an editable draft. Sending requires approval, and the app records the result.',
     },
     modules: [
       {
@@ -132,11 +132,11 @@ export const PROJECTS = [
       },
       {
         title: 'Requirement Fit Analysis',
-        text: 'Compares job requirements with retrieved résumé excerpts and shows a weighted fit score, gaps, and the evidence for each match.',
+        text: 'Compares job requirements with retrieved resume excerpts and shows a weighted fit score, gaps, and the evidence for each match.',
       },
       {
         title: 'Drafting with Provenance',
-        text: 'Generates cover letters and replies using retrieved résumé excerpts. Drafts can be reviewed and edited before sending.',
+        text: 'Generates cover letters and replies using retrieved resume excerpts. Drafts can be reviewed and edited before sending.',
       },
       {
         title: 'Send & Application Ledger',
