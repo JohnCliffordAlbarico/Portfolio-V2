@@ -25,13 +25,33 @@ export const listInput = z.strictObject({
 export type ListQuery = z.infer<typeof listInput>;
 
 export function scoreText(passage: string, text: string, duration: Duration) {
-  const expected = Array.from(passage);
-  const typed = Array.from(text);
-  const correctCharacters = typed.reduce((count, character, index) => count + Number(character === expected[index]), 0);
+  // Keep alignment in sync with frontend/src/lib/typingEngine.js. Only the
+  // server's original passage and submitted final text determine saved credit.
+  const words = Array.from(passage.matchAll(/\S+/gu));
+  let position = 0;
+  let correctCharacters = 0;
+  for (const match of text.matchAll(/(\S+)(\s*)/gu)) {
+    const [, typedWord, separator] = match;
+    if (position >= words.length) break;
+    const committed = separator.length > 0;
+    let target = position;
+    if (typedWord !== words[position][0]) {
+      const next = committed
+        ? words.findIndex((word, index) => index > position && word[0] === typedWord)
+        : words[position + 1]?.[0] === typedWord ? position + 1 : -1;
+      if (next !== -1) target = next;
+    }
+    const word = words[target];
+    const expected = Array.from(word[0]);
+    correctCharacters += Array.from(typedWord).reduce((count, character, index) => count + Number(character === expected[index]), 0);
+    if (committed && word.index + word[0].length < passage.length) correctCharacters++;
+    position = target + Number(committed);
+  }
+  const typedCharacters = characters(text);
   return {
-    correctCharacters, typedCharacters: typed.length,
+    correctCharacters, typedCharacters,
     wpm: Math.round((correctCharacters / 5) / (duration / 60) * 100) / 100,
-    accuracy: typed.length ? Math.round(correctCharacters / typed.length * 10000) / 100 : 0,
+    accuracy: typedCharacters ? Math.round(correctCharacters / typedCharacters * 10000) / 100 : 0,
   };
 }
 
