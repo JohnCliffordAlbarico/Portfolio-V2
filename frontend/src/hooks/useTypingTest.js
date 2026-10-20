@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { advanceTest, createTest, enterText, measure } from '../lib/typingEngine'
+import { advanceTest, createTest, enterText, measure, startTest } from '../lib/typingEngine'
 import { typingRequest } from '../lib/typingApi'
 import { PRACTICE_PASSAGES } from '../constants/typingPassages'
 import { passageHistory, pickPracticePassage } from '../lib/typingPassageHistory'
@@ -46,12 +46,22 @@ export default function useTypingTest(durationSeconds) {
     }
   }, [state.phase])
 
-  function input(text) {
+  function startTimer() {
     if (!challenge) return
-    current.current = enterText(current.current, text, performance.now())
+    current.current = startTest(current.current, performance.now())
     setState(current.current)
   }
 
+  function input(word, options) {
+    if (!challenge) return current.current.word
+    current.current = enterText(current.current, word, performance.now(), challenge.passage.content, options)
+    setState(current.current)
+    return current.current.word
+  }
+
   const elapsed = state.phase === 'finished' ? durationSeconds : state.startedAt === null ? 0 : Math.min(durationSeconds, (state.now - state.startedAt) / 1000)
-  return { state, challenge, input, remaining: Math.max(0, Math.ceil(durationSeconds - elapsed)), stats: measure(challenge?.passage.content || '', state.text, elapsed) }
+  const words = challenge?.passage.content.match(/\S+/gu) || []
+  const expectedWord = words[state.wordIndex] || ''
+  const complete = Boolean(challenge) && state.wordIndex >= words.length
+  return { state, challenge, input, startTimer, expectedWord, complete, remaining: Math.max(0, Math.ceil(durationSeconds - elapsed)), stats: measure(challenge?.passage.content || '', state.text, elapsed) }
 }

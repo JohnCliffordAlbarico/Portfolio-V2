@@ -5,12 +5,14 @@ import Passage from '../components/typing/Passage'
 import SaveResult from '../components/typing/SaveResult'
 import ResultModal from '../components/typing/ResultModal'
 import Records from '../components/typing/Records'
+import TypingInput from '../components/typing/TypingInput'
 import '../styles/typing.css'
 
 function TypingAttempt({ duration, restart, onSaved, focusOnReady }) {
-  const { state, challenge, input, remaining, stats } = useTypingTest(duration)
+  const { state, challenge, input, startTimer, expectedWord, complete, remaining, stats } = useTypingTest(duration)
   const [savedScore, setSavedScore] = useState(null)
   const [resultDismissed, setResultDismissed] = useState(false)
+  const [caretPosition, setCaretPosition] = useState(null)
   const inputRef = useRef(null)
   const finished = state.phase === 'finished'
   const displayed = savedScore || stats
@@ -26,18 +28,18 @@ function TypingAttempt({ duration, restart, onSaved, focusOnReady }) {
     <dl className="typing-measurements" aria-label={finished ? 'Final result' : 'Live measurements'}>
       <div><dt>Time left</dt><dd>{remaining}s</dd></div>
       <div><dt>{finished ? 'Final WPM' : 'Live WPM'}</dt><dd>{displayed.wpm}</dd></div>
-      <div><dt>Accuracy</dt><dd>{displayed.accuracy}%</dd></div>
+      <div><dt>Character accuracy</dt><dd>{displayed.accuracy}%</dd></div>
     </dl>
     {challenge && <>
       <div className="sr-only"><h2>Passage to type</h2><p>{challenge.passage.content}</p></div>
-      <Passage content={challenge.passage.content} text={state.text} />
+      <Passage content={challenge.passage.content} text={state.text} caretPosition={caretPosition} complete={complete} />
     </>}
     <div className="form-field typing-entry">
-      <label htmlFor="typing-input">Type the passage here</label>
-      <textarea ref={inputRef} id="typing-input" value={state.text} onChange={event => input(event.target.value)} disabled={!challenge} readOnly={finished} rows={4} spellCheck={false} autoCorrect="off" autoCapitalize="off" autoComplete="off" aria-describedby="typing-help typing-status" />
+      <label htmlFor="typing-input">Type the highlighted word</label>
+      <TypingInput inputRef={inputRef} word={state.word} expectedWord={expectedWord} input={input} startTimer={startTimer} disabled={!challenge} finished={finished} complete={complete} onCaretChange={setCaretPosition} />
     </div>
-    <p id="typing-help" className="typing-note">The {duration}-second timer starts with your first character. Match case and punctuation; Backspace is welcome. Underlined passage characters mark differences.</p>
-    <p id="typing-status" className="typing-note" role="status">{!challenge ? 'Waiting for a passage.' : finished ? `Warm-up complete. ${displayed.correctCharacters} correct characters in ${duration} seconds.` : state.phase === 'running' ? 'Timer running. Keep typing until time ends.' : 'Ready when you are.'}</p>
+    <p id="typing-help" className="typing-note">The {duration}-second timer starts with your first character. Type the underlined word, then press Space. The field clears only when the word matches, including case and punctuation. Use Backspace to correct it. Completed words stay saved in your attempt; paste and drop are disabled.</p>
+    <p id="typing-status" className="typing-note" role="status">{!challenge ? 'Waiting for a passage.' : finished ? `Warm-up complete. ${displayed.correctCharacters} correct characters in ${duration} seconds.` : complete ? 'Passage complete. Waiting for the timer to finish.' : state.phase === 'running' ? 'Timer running. Keep typing until time ends.' : 'Ready when you are.'}</p>
     <div className="typing-attempt-actions">
       <button type="button" className="button" onClick={restart}><RotateCcw size={15} aria-hidden="true" />{finished ? 'Try again' : 'Restart'}</button>
       {finished && <button type="button" className="button typing-view-result" onClick={() => setResultDismissed(false)}>View result</button>}

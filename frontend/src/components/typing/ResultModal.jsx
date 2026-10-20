@@ -30,11 +30,11 @@ export default function ResultModal({ open, score, duration, onClose, onRetry, c
       <div className="typing-result-body">
         <dl className="typing-result-stats" aria-label="Final typing result">
           <div><dt>Words per minute</dt><dd>{score.wpm}</dd></div>
-          <div><dt>Accuracy</dt><dd>{score.accuracy}%</dd></div>
+          <div><dt>Character accuracy</dt><dd>{score.accuracy}%</dd></div>
           <div><dt>Correct characters</dt><dd>{score.correctCharacters}</dd></div>
           <div><dt>Test duration</dt><dd>{duration}s</dd></div>
         </dl>
-        <p id={descriptionId} className="typing-note">Accuracy measures your final text; errors corrected with Backspace do not count. Final WPM uses the full selected duration.</p>
+        <p id={descriptionId} className="typing-note">Character accuracy measures your final input, including the current word when time ends. Corrected mistakes do not count as errors. Only matching words can advance, and completed words cannot be edited. Final WPM uses the full selected duration.</p>
         {children}
       </div>
       <footer className="typing-result-actions">

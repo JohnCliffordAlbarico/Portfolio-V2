@@ -10,8 +10,15 @@
 .typing-character.correct { color: var(--color-positive); }
 .typing-character.incorrect { color: var(--color-negative); text-decoration: underline wavy; text-underline-offset: 4px; background: var(--color-soft); }
 .typing-character.caret { border-left: 2px solid var(--color-foreground); margin-left: -2px; }
-.typing-entry textarea { min-height: 120px; }
-.typing-entry textarea:read-only { background: var(--color-soft); }
+.typing-word.pending { color: var(--color-muted); }
+.typing-word.correct { color: var(--color-positive); }
+.typing-word.incorrect { color: var(--color-negative); text-decoration: underline wavy; text-underline-offset: 4px; }
+.typing-word.skipped { color: var(--color-muted); text-decoration: line-through; }
+.typing-word.active { text-decoration: underline; text-underline-offset: 7px; text-decoration-color: var(--color-foreground); }
+.typing-entry input { min-height: 48px; font-size: 18px; caret-color: var(--color-foreground); }
+.typing-entry input:read-only { background: var(--color-soft); }
+.typing-entry input[aria-invalid="true"] { border-color: var(--color-negative); }
+.typing-word-feedback { min-height: 1.8em; margin: 6px 0 0; color: var(--color-negative); font-size: 13px; line-height: 1.8; }
 .typing-note { margin: 12px 0 16px; }
 .typing-save { display: grid; gap: 14px; margin-top: 24px; }
 .typing-save h3, .typing-save p { margin: 0; }
