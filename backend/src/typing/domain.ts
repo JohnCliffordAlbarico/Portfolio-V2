@@ -38,7 +38,7 @@ export function scoreText(passage: string, text: string, duration: Duration) {
     if (typedWord !== words[position][0]) {
       const next = committed
         ? words.findIndex((word, index) => index > position && word[0] === typedWord)
-        : words[position + 1]?.[0] === typedWord ? position + 1 : -1;
+        : -1;
       if (next !== -1) target = next;
     }
     const word = words[target];
