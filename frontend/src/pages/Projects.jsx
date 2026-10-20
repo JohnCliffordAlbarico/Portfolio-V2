@@ -42,19 +42,21 @@ export default function Projects() {
   return (
     <>
       <header className="page-heading"><h1>Things I've built.</h1><p>Websites and applications I've built for clients, school, and my own use.</p></header>
-      <div className="search-field">
-        <Search size={18} className="text-muted" aria-hidden="true" />
-        <label className="sr-only" htmlFor="project-search">Search projects by name, description, or technology</label>
-        <input id="project-search" ref={searchRef} type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search projects or technologies…" autoComplete="off" />
-        {query && <button className="icon-button" type="button" onClick={() => setQuery('')} aria-label="Clear search"><X size={16} /></button>}
-      </div>
-      <div className="filter-group" role="group" aria-label="Project category">
-        {['All', ...categories].map(value => <button key={value} className="filter-chip" type="button" data-category={value} aria-pressed={category === value} onClick={() => setCategory(value)}>{value === 'All' ? 'All projects' : value}</button>)}
-      </div>
-      <details className="filter-details">
-        <summary>Filter by technology{techs.length ? ` (${techs.length} selected)` : ''}</summary>
-        <div className="filter-group" role="group" aria-label="Technologies">{technologies.map(tech => <button key={tech} className="filter-chip" type="button" aria-pressed={techs.includes(tech)} onClick={() => toggleTech(tech)}>{tech}</button>)}</div>
-      </details>
+      <section className="project-filters" aria-label="Find a project">
+        <div className="search-field">
+          <Search size={18} className="text-muted" aria-hidden="true" />
+          <label className="sr-only" htmlFor="project-search">Search projects by name, description, or technology</label>
+          <input id="project-search" ref={searchRef} type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search projects or technologies…" autoComplete="off" />
+          {query && <button className="icon-button" type="button" onClick={() => setQuery('')} aria-label="Clear search"><X size={16} /></button>}
+        </div>
+        <div className="filter-group" role="group" aria-label="Project category">
+          {['All', ...categories].map(value => <button key={value} className="filter-chip" type="button" data-category={value} aria-pressed={category === value} onClick={() => setCategory(value)}>{value === 'All' ? 'All projects' : value}</button>)}
+        </div>
+        <details className="filter-details">
+          <summary>Filter by technology{techs.length ? ` (${techs.length} selected)` : ''}</summary>
+          <div className="filter-group" role="group" aria-label="Technologies">{technologies.map(tech => <button key={tech} className="filter-chip" type="button" aria-pressed={techs.includes(tech)} onClick={() => toggleTech(tech)}>{tech}</button>)}</div>
+        </details>
+      </section>
       <div className="results-status"><p role="status">{results.length} {filtering ? 'matching' : 'recent'} {results.length === 1 ? 'project' : 'projects'}</p>{filtering && <button className="text-link" data-clear-filters type="button" onClick={clearFilters}>Clear filters <X size={13} aria-hidden="true" /></button>}</div>
       {results.length ? <div className="project-list">{results.map(project => <ProjectRow key={project.slug} project={project} />)}</div> : <div className="empty-state"><h2>No matching projects</h2><p>Try a different name or technology, or clear the filters to explore all {PROJECTS.length} projects.</p><button className="button button-primary" type="button" data-clear-filters onClick={clearFilters}>Clear search and filters</button></div>}
     </>

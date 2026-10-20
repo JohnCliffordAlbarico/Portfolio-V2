@@ -6,6 +6,8 @@ import { resolve } from 'node:path'
 import { getPageSeo, getPublicPaths, renderSeoHead } from './src/constants/seo.js'
 
 export default defineConfig({
+  server: { proxy: { '/api': 'http://localhost:3000' } },
+  preview: { proxy: { '/api': 'http://localhost:3000' } },
   plugins: [react(), tailwindcss(), {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
@@ -16,6 +18,7 @@ export default defineConfig({
       server.middlewares.use((request, response, next) => {
         const url = new URL(request.url, 'http://localhost')
         const pathname = url.pathname.replace(/\/+$/, '') || '/'
+        if (pathname === '/api' || pathname.startsWith('/api/')) return next()
         if (getPublicPaths().includes(pathname)) {
           request.url = `${pathname === '/' ? '' : pathname}/index.html${url.search}`
         } else if (!pathname.includes('.') && request.headers.accept?.includes('text/html')) {

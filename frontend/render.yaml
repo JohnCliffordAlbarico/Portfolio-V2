@@ -25,6 +25,9 @@ services:
         value: public, max-age=86400, must-revalidate
     routes:
       - type: rewrite
+        source: /playground
+        destination: /playground/index.html
+      - type: rewrite
         source: /about
         destination: /about/index.html
       - type: rewrite

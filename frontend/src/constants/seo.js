@@ -7,6 +7,11 @@ const WEBSITE_ID = `${SITE_URL}/#website`
 const DEFAULT_IMAGE = `${SITE_URL}/social-preview.jpg`
 
 const pages = {
+  '/playground': {
+    title: 'Typing Warm-up | John Clifford Albarico',
+    description: 'Take a casual 30- or 60-second typing warm-up, see your speed and final-text accuracy, and optionally save a public result. No account needed.',
+    type: 'WebPage',
+  },
   '/': {
     title: 'John Clifford Albarico | Software Developer in Cebu',
     description: 'John Clifford Albarico is a software developer and technical consultant in Cebu, building websites, web applications, and mobile and desktop apps.',

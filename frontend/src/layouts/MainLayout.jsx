@@ -5,14 +5,14 @@ import Footer from './Footer'
 import ProfileSidebar from './ProfileSidebar'
 import ConnectSidebar from './ConnectSidebar'
 import usePageSeo from '../hooks/usePageSeo'
+import useSitePresence from '../hooks/useSitePresence'
 
 export default function MainLayout() {
   const { pathname } = useLocation()
   usePageSeo(pathname)
   const mainRef = useRef(null)
   const previousPath = useRef(pathname)
-  const pagePath = pathname.replace(/\/+$/, '') || '/'
-  const label = pagePath === '/' ? 'Overview' : pagePath.startsWith('/projects/') ? 'Project detail' : pagePath === '/projects' ? 'Projects' : pagePath === '/about' ? 'About' : pagePath === '/contact' ? 'Contact' : 'Page not found'
+  const presence = useSitePresence()
 
   useEffect(() => {
     if (previousPath.current !== pathname) {
@@ -26,11 +26,8 @@ export default function MainLayout() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="portfolio-workspace">
-        <ProfileSidebar />
+        <ProfileSidebar presence={presence} />
         <div className="center-column">
-          {pagePath !== '/' && <header className="workspace-toolbar">
-            <span className="metadata">{label}</span>
-          </header>}
           <main id="main-content" ref={mainRef} tabIndex={-1}>
             <Outlet key={pathname} />
           </main>

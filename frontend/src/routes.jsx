@@ -6,6 +6,7 @@ import ProjectDetails from './pages/ProjectDetails'
 import Contact from './pages/Contact'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
+import Playground from './pages/Playground'
 
 export default function PortfolioRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function PortfolioRoutes() {
         <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/playground" element={<Playground />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

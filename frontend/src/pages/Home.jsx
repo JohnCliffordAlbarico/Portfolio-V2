@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ProjectRow from '../components/ProjectRow'
 import { PROJECTS } from '../constants/projects'
 
-const selected = ['tanon-strait-resort', 'bacaltos-healthcare-system']
+const selected = ['tanon-strait-resort', 'bacaltos-healthcare-system', 'flowiq']
   .map(slug => PROJECTS.find(project => project.slug === slug))
   .filter(Boolean)
 
@@ -18,7 +18,7 @@ export default function Home() {
         <p className="intro-lead">I'm Clifford, a software developer and technical consultant based in Cebu.</p>
         <div className="intro-actions">
           <Link className="button button-primary" to="/projects">Explore my work <ArrowUpRight size={15} aria-hidden="true" /></Link>
-          <Link className="button" to="/about">More about me</Link>
+          <Link className="text-link" to="/about">More about me <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </div>
       </section>
       <section aria-labelledby="featured-work-title">
@@ -28,6 +28,7 @@ export default function Home() {
         </div>
         <div className="project-list">{selected.map(project => <ProjectRow key={project.slug} project={project} compact />)}</div>
       </section>
+      <p className="home-utility"><Link className="text-link" to="/playground">Take a short typing warm-up <ArrowUpRight size={14} aria-hidden="true" /></Link></p>
     </>
   )
 }

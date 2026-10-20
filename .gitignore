@@ -75,6 +75,7 @@ ios/Pods/
 /*
 !/.gitignore
 !/frontend/
+!/backend/
 
 # Markdown documentation belongs in the ignored root doc/ folder.
 /frontend/**/*.md

@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 import profileImage from '../assets/profile.jpg'
 import ThemeSelector from '../components/ThemeSelector'
 
-export default function ProfileSidebar() {
+export default function ProfileSidebar({ presence = null }) {
   return (
     <aside className="profile-sidebar" aria-label="Profile">
       <div className="profile-identity">
@@ -16,6 +16,7 @@ export default function ProfileSidebar() {
       <div className="profile-facts">
         <p className="availability"><span className="status-dot" aria-hidden="true" />Available for work</p>
         <p className="text-muted">Based in Cebu, PH</p>
+        {presence > 0 && <p className="profile-presence">{presence} browsing now</p>}
         <p className="profile-stack">React · Next.js · Node.js<br />Electron · React Native</p>
       </div>
       <a className="resume-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
